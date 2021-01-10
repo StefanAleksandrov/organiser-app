@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer App</title>
+
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <header>
+        <!-- <span>ORGANIZER APP</span> -->
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contacts">Contacts</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </header>
+
+    <main>
+
+        <div class="home">
+            <h1>Upcoming Events</h1>
+
+            <div class="event">
+                <h3>Summer Vacation</h3>
+                <p>Participants: Pesho, Stamat, Mariyka</p>
+                <img src="https://media.istockphoto.com/photos/aerial-view-of-bodrum-on-turkish-riviera-picture-id628897338?k=6&m=628897338&s=612x612&w=0&h=HqbVAxryU0IbSq_SDLZ8Hbez54kaqUUZDYcHnncqk2M=" alt="White sea picture">
+                <button class="event-btn">Details</button>
+            </div>
+
+            <div class="event">
+                <h3>8th December</h3>
+                <p>Participants: Pesho, Gosho, Mariyka</p>
+                <img src="https://images.iphonephotographyschool.com/22122/winter-photography-10000.jpg" alt="Snow picture">
+                <button class="event-btn">Details</button>
+            </div>
+
+            <div class="event">
+                <h3>New Year's Eve</h3>
+                <p>Participants: Pesho, Gosho, Stamat</p>
+                <img src="https://i2.wp.com/digital-photography-school.com/wp-content/uploads/2013/06/fireworks-tips-dps-06.jpg?resize=600%2C400&ssl=1" alt="Fireworks picture">
+                <button class="event-btn">Details</button>
+            </div>
+
+            <div class="event">
+                <h3>Stamat's Birthday</h3>
+                <p>Participants: Pesho, Gosho, Stamat, Mariyka</p>
+                <img src="https://www.ronniesainiphotography.com/wp-content/uploads/ocean-theme-boy-first-birthday-party-020.jpg" alt="Birthday cake picture">
+                <button class="event-btn">Details</button>
+            </div>
+            
+            <div class="event">
+                <h3>Maryika's Wedding</h3>
+                <p>Participants: Pesho, Gosho, Stamat, Mariyka</p>
+                <img src="https://images.squarespace-cdn.com/content/v1/512e63d6e4b0c046ed792a96/1583408232189-CR2RQ25PSP197B2MWWO5/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/Best_Wedding_Photographer_in+_Tuscany.jpg?format=2500w" alt="Birthday cake picture">
+                <button class="event-btn">Details</button>
+            </div>
+        </div>
+
+        <div class="login" style="display: none;">
+        <!-- <div class="login"> -->
+            <form action="/login" autocomplete="off">
+                <label for="email" class="login-form">Email:</label>
+                <input type="text" id="email" class="login-form">
+                <p class="error" id="error-email" style="display: none;">Invalid email!</p>
+                <label for="password" class="login-form">Password:</label>
+                <input type="password" id="password" class="login-form">
+                <p class="error" id="error-password" style="display: none;">Invalid password!</p>
+                <input type="submit" value="Login" class="login-form" disabled>
+            </form>
+            <div>Not a member yet? <a href="/register">Register</a> here!</div>
+        </div>
+
+        <div class="register" style="display: none;">
+        <!-- <div class="register"> -->
+            <form action="/login" autocomplete="off">
+                <label for="email" class="register-form">Email:</label>
+                <input type="text" id="email" class="register-form">
+                <p class="error" id="error-email" style="display: none;">Invalid email!</p>
+                <label for="password" class="register-form">Password:</label>
+                <input type="password" id="password" class="register-form">
+                <p class="error" id="error-password" style="display: none;">Invalid password!</p>
+                <label for="password" class="register-form">Repeat Password:</label>
+                <input type="password" id="password" class="register-form">
+                <p class="error" id="error-password" style="display: none;">Invalid password!</p>
+                <input type="submit" value="Register" class="register-form" disabled>
+            </form>
+            <div>Already a member? <a href="/register">Login</a> here!</div>
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
