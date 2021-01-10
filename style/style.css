@@ -15,35 +15,55 @@
 /* Header */
 header {
     width: 100%;
-    height: 7.5vh;
     background-color: rgba(125, 125, 125, 0.8);
 }
 
-header > ul {
+header div.container {
+    height: 6vh;
+    width: 75%;
+    margin: 0 auto;
+}
+
+header div.container > a {
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+    font-family: monospace;
+}
+
+header div.container > a > span {
+    font-size: 40px;
+    font-weight: 700;
+    color: black;
+    font-family: monospace;
+}
+
+header ul {
+    float: right;
     margin-left: auto;
     padding-top: 15px;
-    width: 30%;
     text-align: center;
 }
 
-header > ul > li {
+header ul li {
     display: inline-block;
     padding: 5px;
     border-right: solid black 1px;
 }
 
-header > ul > li:last-of-type {
+header ul li:last-of-type {
     border: none;
     margin-right: 10px;
 }
 
-header > ul > li:hover {
+header ul li:hover {
     background-color: rgba(200, 200, 200, 0.5);
     color: black;
     cursor: pointer;
 }
 
-header > ul > li > a{
+header ul li a{
     text-align: center;
     padding: 0 5px;
     text-decoration: none;
@@ -53,7 +73,7 @@ header > ul > li > a{
 /* Main Section */
 main {
     width: 75%;
-    min-height: 85vh;
+    min-height: 88vh;
     margin: 0 auto;
     padding: 50px 0;
 }
@@ -93,14 +113,27 @@ div.register div {
 
 /* Home */
 div.home h1 {
-    margin-bottom: 25px;
-    text-align: center;
+    margin: 0 0 25px;
+    width: 95%;
+    display: inline-block;
+    /* text-align: center; */
     font-size: 26px;
+}
+
+div.home .pagi {
+    width: 4%;
+    margin: 0;
+    height: 31px;
+    border-radius: 5px;
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
 }
 
 div.event {
     display: inline-block;
-    width: 24%;
+    width: 24.5%;
+    height: 350px;
     padding: 0 10px;
     margin: 5px 0;
     background-color: rgba(200, 200, 200, 0.5);
@@ -148,6 +181,15 @@ div.event button.event-btn:hover {
 /* Footer */
 footer {
     width: 100%;
-    height: 7.5vh;
+    height: 6vh;
     background-color: rgba(125, 125, 125, 0.8);
+}
+
+footer p {
+    text-align: center;
+    padding-top: 6px;
+}
+
+footer p span {
+    font-weight: 700;
 }
