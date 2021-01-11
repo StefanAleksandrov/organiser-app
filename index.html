@@ -16,14 +16,17 @@
                 <li><a href="/contacts">Contacts</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
+                <li><a href="/add-event">Add Event</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </header>
 
     <main>
         <!-- HOME -->
-        <!-- <div class="home"> -->
-        <div class="home" style="display: none;">
+        <div class="home">
+        <!-- <div class="home" style="display: none;"> -->
             <h1>Upcoming Events</h1>
 
             <select name="paginationCount" id="pagiCount" class="pagi">
@@ -75,35 +78,57 @@
             </div>
         </div>
 
+        <!-- ABOUT -->
+        <div class="about">
+        <!-- <div class="about" style="display: none;"> -->
+            <h1>Your Pocket Organizer!</h1>
+            <p>Welcome to Organizer web application!</p>
+            <p>With the help of this application you can organize your day / event / special occasion easier than ever before!</p>
+            <p>By joining our growing community you will gain access to powerfull instruments that will make the organisation process like a children game! You can add new events, invite members, open discussions with the option of adding suggestions and much more! Our app also supports adding friends, private messages, browsing upcomming events and more!</p>
+            <p>If this sounds like the thing you need, we urge you to <a href="/register">register</a> right away!</p>
+            <p>Already a member? <a href="/login">Login</a> and start organising!</p>
+        </div>
+
+        <!-- CONTACTS -->
+        <div class="contacts">
+            <form action="/send-message" autocomplete="off" method="POST">
+                <label for="topic" class="form">Topic:</label>
+                <input type="text" id="topic" class="form">
+                <label for="message" class="form">Message:</label>
+                <textarea id="message" rows="10" cols="50"></textarea>
+                <input type="submit" value="Send" class="form" disabled>
+            </form>
+        </div>
+
         <!-- LOGIN -->
-        <div class="login" style="display: none;">
-        <!-- <div class="login"> -->
-            <form action="/login" autocomplete="off">
-                <label for="email" class="login-form">Email:</label>
-                <input type="text" id="email" class="login-form">
+        <!-- <div class="login" style="display: none;"> -->
+        <div class="login">
+            <form action="/login" autocomplete="off" method="POST">
+                <label for="email" class="form">Email:</label>
+                <input type="text" id="email" class="form">
                 <p class="error" id="error-email" style="display: none;">Invalid email!</p>
-                <label for="password" class="login-form">Password:</label>
-                <input type="password" id="password" class="login-form">
+                <label for="password" class="form">Password:</label>
+                <input type="password" id="password" class="form">
                 <p class="error" id="error-password" style="display: none;">Invalid password!</p>
-                <input type="submit" value="Login" class="login-form" disabled>
+                <input type="submit" value="Login" class="form" disabled>
             </form>
             <div>Not a member yet? <a href="/register">Register</a> here!</div>
         </div>
 
         <!-- REGISTER -->
-        <div class="register" style="display: none;">
-        <!-- <div class="register"> -->
-            <form action="/login" autocomplete="off">
-                <label for="email" class="register-form">Email:</label>
-                <input type="text" id="email" class="register-form">
+        <!-- <div class="register" style="display: none;"> -->
+        <div class="register">
+            <form action="/login" autocomplete="off" method="POST">
+                <label for="email" class="form">Email:</label>
+                <input type="text" id="email" class="form">
                 <p class="error" id="error-email" style="display: none;">Invalid email!</p>
-                <label for="password" class="register-form">Password:</label>
-                <input type="password" id="password" class="register-form">
+                <label for="password" class="form">Password:</label>
+                <input type="password" id="password" class="form">
                 <p class="error" id="error-password" style="display: none;">Invalid password!</p>
-                <label for="password" class="register-form">Repeat Password:</label>
-                <input type="password" id="password" class="register-form">
+                <label for="password" class="form">Repeat Password:</label>
+                <input type="password" id="password" class="form">
                 <p class="error" id="error-password" style="display: none;">Invalid password!</p>
-                <input type="submit" value="Register" class="register-form" disabled>
+                <input type="submit" value="Register" class="form" disabled>
             </form>
             <div>Already a member? <a href="/register">Login</a> here!</div>
         </div>
