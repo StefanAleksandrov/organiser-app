@@ -1,7 +1,7 @@
 # Organizer web app
  
 ## Organize different events
-## Create an event and manage it (creator is administrator)
+## Add an event and manage it (creator is administrator)
 
 ### Public Content
 #### -View all the active events
@@ -34,7 +34,7 @@
 ##### 1) Pictures
 ##### 2) Discussion
 
-#### -Create event:
+#### -Add event:
 ##### 1) Event name
 ##### 2) Event description
 ##### 3) Event avatar

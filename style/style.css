@@ -96,7 +96,8 @@ input.form:last-of-type {
     margin: 50px auto;
 }
 
-label.form:nth-of-type(2) {
+label.form:nth-of-type(2),
+label.form:nth-of-type(3) {
     margin-top: 25px;
 }
 
@@ -104,6 +105,14 @@ div.login div,
 div.register div {
     text-align: center;
     font-size: 14px;
+}
+
+input.form[type="submit"]:hover {
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+input.form[type="submit"]:disabled {
+    cursor: not-allowed;
 }
 
 /* Home */
@@ -170,6 +179,49 @@ div.event button.event-btn {
 div.event button.event-btn:hover {
     background-color: rgba(125, 125, 125, 0.6);
     cursor: pointer;
+}
+
+/* ABOUT */
+div.about p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+div.about img {
+    width: 100%;
+    height: 550px;
+    overflow-y: hidden;
+    opacity: 0.6;
+}
+
+/* Contacts */
+.form-text-area {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    width: 30%;
+    height: 160px;
+    resize: none;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+/* ADD NEW EVENT */
+div.add-event {
+    margin: 0 auto;
+    width: 70%;
+}
+
+div.add-event img {
+    display: inline-block;
+    max-width: 30%;
+}
+
+div.add-event form {
+    display: inline-block;
+    width: 69%;
 }
 
 /* Footer */
