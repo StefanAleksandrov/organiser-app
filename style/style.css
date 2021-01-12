@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: Helvetica, sans-serif;
     font-size: 16px;
+    color: #241715;
 }
 
 .error {
@@ -15,12 +16,13 @@
 /* Header */
 header {
     width: 100%;
-    background-color: rgba(125, 125, 125, 0.8);
+    background-color: #402A2C;
 }
 
 header div.container {
-    height: 6vh;
+    height: 7vh;
     width: 75%;
+    padding: 0 50px;
     margin: 0 auto;
 }
 
@@ -28,28 +30,27 @@ header div.container > a {
     font-size: 24px;
     font-weight: 700;
     text-decoration: none;
-    color: black;
+    color: #ecdde3;
     font-family: monospace;
 }
 
 header div.container > a > span {
     font-size: 40px;
     font-weight: 700;
-    color: black;
+    color: #ecdde3;
     font-family: monospace;
 }
 
 header ul {
     float: right;
-    margin-left: auto;
     padding-top: 15px;
     text-align: center;
 }
 
 header ul li {
     display: inline-block;
+    width: 85px;
     padding: 5px;
-    border-right: solid black 1px;
 }
 
 header ul li:last-of-type {
@@ -59,23 +60,23 @@ header ul li:last-of-type {
 
 header ul li:hover {
     background-color: rgba(200, 200, 200, 0.5);
-    color: black;
     cursor: pointer;
 }
 
 header ul li a{
     text-align: center;
-    padding: 0 5px;
     text-decoration: none;
-    color: black;
+    color: #ecdde3;
 }
 
 /* Main Section */
 main {
     width: 75%;
-    min-height: 88vh;
+    min-height: 86vh;
     margin: 0 auto;
-    padding: 50px 0;
+    padding: 50px;
+    background-color: #f5e7ec;
+    color: #241715;
 }
 
 /* Login & Register */
@@ -89,7 +90,10 @@ main {
 input.form {
     width: 30%;
     height: 40px;
+    border: 1px solid #703D57;
     border-radius: 999999px;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
 }
 
 input.form:last-of-type {
@@ -105,6 +109,10 @@ div.login div,
 div.register div {
     text-align: center;
     font-size: 14px;
+}
+
+input.form[type="submit"] {
+    background-color: #aa6f8d;
 }
 
 input.form[type="submit"]:hover {
@@ -139,13 +147,13 @@ div.event {
     height: 375px;
     padding: 0 10px;
     margin: 5px 0;
-    background-color: rgba(200, 200, 200, 0.5);
-    border: 1px solid rgba(200, 200, 200, 0.5);
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
 }
 
 div.event:hover {
-    background-color: rgba(200, 200, 200, 0.9);
+    background-color: rgba(255, 255, 255, .35);  
 }
 
 div.event h3 {
@@ -169,7 +177,7 @@ div.event img {
 div.event button.event-btn {
     width: 100%;
     height: 30px;
-    background-color: rgba(125, 125, 125, 0.8);
+    background-color: #aa6f8d;
     border: none;
     border-radius: 15px;
     outline: none;
@@ -177,7 +185,8 @@ div.event button.event-btn {
 }
 
 div.event button.event-btn:hover {
-    background-color: rgba(125, 125, 125, 0.6);
+    background-color: #b47d99;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -188,11 +197,9 @@ div.about p {
     text-align: justify;
 }
 
-div.about img {
-    width: 100%;
-    height: 550px;
-    overflow-y: hidden;
-    opacity: 0.6;
+div.about p a {
+    font-weight: 700;
+    color: #703D57;
 }
 
 /* Contacts */
@@ -227,8 +234,8 @@ div.add-event form {
 /* Footer */
 footer {
     width: 100%;
-    height: 6vh;
-    background-color: rgba(125, 125, 125, 0.8);
+    height: 7vh;
+    background-color: #402A2C;
 }
 
 footer p {
