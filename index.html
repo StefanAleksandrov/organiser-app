@@ -25,8 +25,8 @@
 
     <main>
         <!-- HOME -->
-        <div class="home">
-        <!-- <div class="home" style="display: none;"> -->
+        <!-- <div class="home"> -->
+        <div class="home" style="display: none;">
             <h1>Upcoming Events</h1>
 
             <select name="paginationCount" id="pagiCount" class="pagi">
@@ -79,8 +79,8 @@
         </div>
 
         <!-- ABOUT -->
-        <div class="about">
-        <!-- <div class="about" style="display: none;"> -->
+        <!-- <div class="about"> -->
+        <div class="about" style="display: none;">
             <h1>Your Pocket Organiser!</h1>
             <p>Welcome to Organiser web application! With the help of this application you can organise your day / event / special occasion easier than ever before! By joining our growing community you will gain access to powerfull instruments that will make the organisation process like a children game! You can add new events, invite members, open discussions with the option of adding suggestions and much more! Our app also supports adding friends, private messages, browsing upcomming events and more!</p>
             <p>If this sounds like the thing you need, we urge you to <a href="/register">register</a> now for free!</p>
@@ -88,7 +88,8 @@
         </div>
 
         <!-- CONTACTS -->
-        <div class="contacts">
+        <!-- <div class="contacts"> -->
+        <div class="contacts" style="display: none;">
             <form action="/send-message" autocomplete="off" method="POST">
                 <label for="topic" class="form">Topic:</label>
                 <input type="text" id="topic" class="form">
@@ -99,8 +100,8 @@
         </div>
 
         <!-- LOGIN -->
-        <!-- <div class="login" style="display: none;"> -->
-        <div class="login">
+        <!-- <div class="login"> -->
+        <div class="login" style="display: none;">
             <form action="/login" autocomplete="off" method="POST">
                 <label for="email" class="form">Email:</label>
                 <input type="text" id="email" class="form">
@@ -114,8 +115,8 @@
         </div>
 
         <!-- REGISTER -->
-        <!-- <div class="register" style="display: none;"> -->
-        <div class="register">
+        <!-- <div class="register"> -->
+        <div class="register" style="display: none;">
             <form action="/login" autocomplete="off" method="POST">
                 <label for="email" class="form">Email:</label>
                 <input type="text" id="email" class="form">
@@ -133,14 +134,16 @@
 
         <!-- ADD EVENT -->
         <div class="add-event">
-            <img src="/public/images/DefaultEventImage.jpg" alt="Default Event Image">
-            <input type="submit" value="Add Avatar" class="form" style="margin: 0;">
+            <div class="left">
+                <img src="/public/images/DefaultEventImage.jpg" alt="Default Event Image">
+                <input type="submit" value="Add Avatar" class="form">
+            </div>
 
             <form action="/add-event" method="POST">
                 <label for="name" class="form">Event Name:</label>
                 <input type="text" class="form" id="name">
                 <label for="desc" class="form">Event Description:</label>
-                <textarea class="form" id="desc" class="text-area-form"></textarea>
+                <textarea id="desc"></textarea>
                 <input type="submit" value="Create" class="form" disabled>
             </form>
         </div>
