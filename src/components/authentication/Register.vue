@@ -16,7 +16,7 @@
       </p>
       <input type="submit" value="Register" class="form" disabled />
     </form>
-    <div>Already a member? <a href="/login">Login</a> here!</div>
+    <div>Already a member? <router-link to="/login">Login</router-link> here!</div>
   </div>
 </template>
 

@@ -28,14 +28,17 @@ div.footer {
 
 div.footer p {
   text-align: center;
-  padding-top: 9px;
+  padding-top: 5px;
+  margin: 0;
   color: #ecdde3;
+  user-select: none;
 }
 
 div.footer p.single-line {
   display: inline-block;
   width: 33%;
   text-align: center;
+  user-select: none;
 }
 
 div.footer div.container {
@@ -46,5 +49,6 @@ div.footer div.container {
 div.footer p span {
   font-weight: 700;
   color: #f5e7ec;
+  user-select: all;
 }
 </style>

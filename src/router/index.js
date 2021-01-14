@@ -6,6 +6,7 @@ import Login from '../components/authentication/Login'
 import Register from '../components/authentication/Register'
 import Contacts from '../components/contacts/Contacts'
 import AddEvent from '../components/events/AddEvent'
+import PageNotFound from '../components/common/PageNotFound'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/add-event',
     name: 'AddEvent',
     component: AddEvent
+  },
+  {
+    path: '/*',
+    name: 'PageNotFound',
+    component: PageNotFound
   }
 ]
 

@@ -1,6 +1,8 @@
 <template>
   <div class="contacts">
     <form action="/send-message" autocomplete="off" method="POST">
+      <label for="email" class="form">Your Email:</label>
+      <input type="text" id="email" class="form" />
       <label for="topic" class="form">Topic:</label>
       <input type="text" id="topic" class="form" />
       <label for="message" class="form">Message:</label>
@@ -26,7 +28,7 @@ export default {
     margin: 0 auto;
     padding: 20px;
     width: 40%;
-    height: 160px;
+    height: 100px;
     resize: none;
     outline: none;
     border: 1px solid #703D57;

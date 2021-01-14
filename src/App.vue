@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <page-header/>
+    <page-header :logged="isLoggedIn"/>
     <main>
       <router-view/>
     </main>
@@ -16,17 +16,25 @@ export default {
   components: {
     PageHeader,
     PageFooter,
+  },
+  data() {
+    return {
+      isLoggedIn : false,
+    }
   }
 }
 </script>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
+*, *::before, *::after {
     box-sizing: border-box;
     font-family: Helvetica, sans-serif;
     font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
     color: #241715;
 }
 

@@ -2,7 +2,7 @@
   <div class="add-event">
     <div class="left">
       <img
-        src="/public/images/DefaultEventImage.jpg"
+        src="../../../public/images/DefaultEventImage.jpg"
         alt="Default Event Image"
       />
       <input type="submit" value="Add Avatar" class="form" />

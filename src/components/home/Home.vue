@@ -6,8 +6,6 @@
       <option value="8">8</option>
       <option value="16">16</option>
       <option value="24">24</option>
-      <option value="32">32</option>
-      <option value="40">40</option>
     </select>
 
     <div class="event">
