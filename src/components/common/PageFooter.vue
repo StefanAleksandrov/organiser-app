@@ -22,7 +22,7 @@ export default {
 /* Footer */
 div.footer {
   width: 100%;
-  height: 10vh;
+  height: 60px;
   background-color: #402a2c;
 }
 
