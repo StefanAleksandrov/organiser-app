@@ -4,8 +4,8 @@
       <label for="email" class="form">Email:</label>
       <input type="text" id="email" class="form" />
       <p class="error" id="error-email" style="display: none">Invalid email!</p>
-      <label for="password" class="form">Password:</label>
-      <input type="password" id="password" class="form" />
+      <label for="loginPassword" class="form">Password:</label>
+      <input type="password" id="loginPassword" class="form" />
       <p class="error" id="error-password" style="display: none">
         Invalid password!
       </p>
@@ -34,7 +34,8 @@ export default {
 
 input.form {
     width: 40%;
-    height: 40px;
+    height: 35px;
+    padding: 0 15px;
     border: 1px solid #703D57;
     border-radius: 999999px;
     background-color: rgba(255, 255, 255, .15);

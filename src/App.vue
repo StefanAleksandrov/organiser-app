@@ -40,16 +40,21 @@ body {
 
 .error {
     text-align: center;
-    font-weight: 500;
     color: red;
+}
+
+.error-border {
+  background-color: rgb(255, 211, 211) !important;
+  border: 1px solid red !important;
+  color: red;
 }
 
 /* Main Section */
 main {
     width: 75%;
-    min-height: 83vh;
+    min-height: calc(100vh - 110px);
     margin: 0 auto;
-    padding: 50px;
+    padding: 30px;
     background-color: #f5e7ec;
     color: #241715;
 }

@@ -39,7 +39,7 @@ div.header {
 }
 
 div.header div.container {
-  height: 7vh;
+  height: 50px;
   width: 75%;
   padding: 0 50px;
   margin: 0 auto;
