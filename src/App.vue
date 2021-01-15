@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <page-header :logged="isLoggedIn"/>
+    <page-header :logged="isLoggedIn" />
     <main>
-      <router-view/>
+      <router-view />
     </main>
-    <page-footer/>
+    <page-footer />
   </div>
 </template>
 
@@ -17,30 +17,48 @@ export default {
     PageHeader,
     PageFooter,
   },
+  created() {
+    if (localStorage.getItem("uid") !== null) {
+      this.isLoggedIn = true;
+    }
+
+    this.$root.$on("log-change", this.onLogChange);
+  },
   data() {
     return {
-      isLoggedIn : false,
-    }
-  }
-}
+      isLoggedIn: false,
+    };
+  },
+  methods: {
+    onLogChange() {
+      if (localStorage.getItem("uid") !== null && localStorage.getItem("userEmail") !== null) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    },
+  },
+};
 </script>
 
 <style>
-*, *::before, *::after {
-    box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
-    font-size: 16px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    color: #241715;
+  margin: 0;
+  padding: 0;
+  color: #241715;
 }
 
 .error {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
 
 .small-text {
@@ -57,11 +75,11 @@ body {
 
 /* Main Section */
 main {
-    width: 75%;
-    min-height: calc(100vh - 110px);
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #f5e7ec;
-    color: #241715;
+  width: 75%;
+  min-height: calc(100vh - 110px);
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f5e7ec;
+  color: #241715;
 }
 </style>

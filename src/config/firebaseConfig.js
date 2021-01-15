@@ -1,4 +1,4 @@
-export default {
+export const firebaseConfig = {
     apiKey: "AIzaSyDBu1fgOMjvfHUnid0xfGBQJRsESFXhLMY",
     authDomain: "organiser-app-e74d7.firebaseapp.com",
     projectId: "organiser-app-e74d7",

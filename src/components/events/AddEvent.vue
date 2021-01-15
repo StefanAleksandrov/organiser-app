@@ -29,13 +29,13 @@ export default {
 
 <style scoped>
 div.add-event {
-  margin: 0 auto;
+  margin: 50px auto;
   width: 100%;
 }
 
 div.add-event div.left {
   display: inline-block;
-  width: 40%;
+  width: 30%;
 }
 
 div.add-event div.left img {
@@ -48,7 +48,7 @@ div.add-event div.left input.form {
 
 div.add-event form {
   display: inline-block;
-  width: 59%;
+  width: 69%;
 }
 
 div.add-event form .form {
@@ -62,7 +62,7 @@ div.add-event form textarea {
   margin: 0 auto;
   padding: 20px;
   width: 90%;
-  height: 75px;
+  height: 150px;
   resize: none;
   outline: none;
   border: 1px solid #703d57;

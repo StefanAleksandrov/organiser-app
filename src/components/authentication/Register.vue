@@ -69,11 +69,10 @@
 </template>
 
 <script>
+import { auth } from '../../config/firebaseInit.js'
+
 export default {
   name: "home",
-  created() {
-    console.log(this.$firebase);
-  },
   data() {
     return {
       userEmail: "",
@@ -138,10 +137,15 @@ export default {
     },
 
     onRegisterClick() {
-      this.$firebaseAuth.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
-        .then((user) => {
-          console.log(user);
-          this.$router.push("/login");
+      auth.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
+        .then(() => {
+          auth.signInWithEmailAndPassword(this.userEmail, this.userPassword)
+            .then(({user}) => {
+              localStorage.setItem('userEmail', user.email);
+              localStorage.setItem('uid', user.uid);
+              this.$root.$emit('log-change');
+              this.$router.push("/");
+            })
         })
     }
   },

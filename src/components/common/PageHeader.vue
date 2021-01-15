@@ -9,7 +9,7 @@
         <template v-if="logged">
           <li><router-link to="/add-event">Add Event</router-link></li>
           <li><router-link to="/profile">Profile</router-link></li>
-          <li><router-link to="/logout">Logout</router-link></li>
+          <li><a @click="onLogout" >Logout</a></li>
         </template>
 
         <template v-else>
@@ -28,6 +28,14 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    onLogout() {
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('uid');
+      this.$root.$emit("log-change");
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 
