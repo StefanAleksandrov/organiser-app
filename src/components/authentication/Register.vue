@@ -16,7 +16,7 @@
         v-model="userEmail"
         @change="validateEmail"
       />
-      <p class="error" id="error-email" v-if="emailErrorClass">
+      <p class="error small-text" id="error-email" v-if="emailErrorClass">
         Invalid email, please check the spelling again!
       </p>
       <label
@@ -34,7 +34,7 @@
         v-model="userPassword"
         @change="validatePassword"
       />
-      <p class="error" id="error-password" v-if="passwordErrorClass">
+      <p class="error small-text" id="error-password" v-if="passwordErrorClass">
         Password should be 6 symbols or more!
       </p>
       <label
@@ -52,7 +52,7 @@
         v-model="userRepassword"
         @change="validateRepassword"
       />
-      <p class="error" id="error-password" v-if="repasswordErrorClass">
+      <p class="error small-text" id="error-password" v-if="repasswordErrorClass">
         Passwords don't match!
       </p>
       <input
@@ -71,6 +71,9 @@
 <script>
 export default {
   name: "home",
+  created() {
+    console.log(this.$firebase);
+  },
   data() {
     return {
       userEmail: "",
@@ -135,9 +138,11 @@ export default {
     },
 
     onRegisterClick() {
-      //TODO REGISTER
-
-      //TODO REDIRECT ON REGISTER SUCCESS
+      this.$firebaseAuth.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
+        .then((user) => {
+          console.log(user);
+          this.$router.push("/login");
+        })
     }
   },
 };

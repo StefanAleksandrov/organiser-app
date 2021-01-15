@@ -43,6 +43,12 @@ body {
     color: red;
 }
 
+.small-text {
+  font-size: 12px;
+  font-style: italic;
+  margin: 0;
+}
+
 .error-border {
   background-color: rgb(255, 211, 211) !important;
   border: 1px solid red !important;
