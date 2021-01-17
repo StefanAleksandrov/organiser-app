@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <page-header :logged="isLoggedIn" />
+    <notification v-if="notificationMessage" :message="notificationMessage" :type="notificationType"></notification>
     <main>
       <router-view />
     </main>
@@ -9,13 +10,15 @@
 </template>
 
 <script>
-import PageHeader from "./components/common/PageHeader";
-import PageFooter from "./components/common/PageFooter";
+import PageHeader from "./components/common/PageHeader"
+import PageFooter from "./components/common/PageFooter"
+import Notification from "./components/common/Notification"
 
 export default {
   components: {
     PageHeader,
     PageFooter,
+    Notification,
   },
   created() {
     if (localStorage.getItem("uid") !== null) {
@@ -23,10 +26,13 @@ export default {
     }
 
     this.$root.$on("log-change", this.onLogChange);
+    this.$root.$on("notify", this.onNotify);
   },
   data() {
     return {
       isLoggedIn: false,
+      notificationMessage: "",
+      notificationType: "",
     };
   },
   methods: {
@@ -36,6 +42,15 @@ export default {
       } else {
         this.isLoggedIn = false;
       }
+    },
+    onNotify(args) {
+      this.notificationMessage = args[0];
+      this.notificationType = args[1];
+
+      setTimeout(() => {
+        this.notificationMessage = "";
+        this.notificationType = "";
+      }, 2000);
     },
   },
 };
