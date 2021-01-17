@@ -39,6 +39,7 @@
 ##### 2) Event description
 ##### 3) Event avatar
 ##### 4) Event initial members (invitations)
+##### 5) Event type- Open or Closed
 
 #### -Manage events:
 ##### 1) Rename

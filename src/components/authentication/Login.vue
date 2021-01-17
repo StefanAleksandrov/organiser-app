@@ -58,7 +58,6 @@ export default {
   mixins: [authMixin],
   created() {
     this.repasswordError = false;
-    this.$root.$emit("notify", ["I am created!", "error"]);
   },
   data() {
     return {};

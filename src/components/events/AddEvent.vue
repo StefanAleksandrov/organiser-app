@@ -10,9 +10,13 @@
 
     <form action="/add-event" method="POST">
       <label for="name" class="form">Event Name:</label>
-      <input type="text" class="form" id="name" />
+      <input type="text" class="form" id="name" v-model="eventName" />
       <label for="desc" class="form">Event Description:</label>
-      <textarea id="desc"></textarea>
+      <textarea id="desc" v-model="eventDesc" ></textarea>
+      <select name="event-type" id="type" v-model="isOpen" class="form" >
+        <option :value="true" >Open event</option>
+        <option :value="false" >Closed event</option>
+      </select>
       <input type="submit" value="Create" class="form" disabled />
     </form>
   </div>
@@ -22,41 +26,51 @@
 export default {
   name: "add-event",
   data() {
-    return {};
+    return {
+      eventName: "",
+      eventDesc: "",
+      creator: "",
+      moderators: [],
+      members: [],
+      isOpen: "",
+      eventDate: "",
+      createdAt: "",
+      modifiedAt: "",
+    };
   },
 };
 </script>
 
 <style scoped>
-div.add-event {
+.add-event {
   margin: 50px auto;
   width: 100%;
 }
 
-div.add-event div.left {
+.add-event .left {
   display: inline-block;
   width: 30%;
 }
 
-div.add-event div.left img {
+.add-event .left img {
   width: 100%;
 }
 
-div.add-event div.left input.form {
+.add-event .left input.form {
   width: 100%;
 }
 
-div.add-event form {
+.add-event form {
   display: inline-block;
   width: 69%;
 }
 
-div.add-event form .form {
+.add-event form .form {
   width: 90%;
   margin-left: auto;
 }
 
-div.add-event form textarea {
+.add-event form textarea {
   display: block;
   background-color: #f5e7ec;
   margin: 0 auto;

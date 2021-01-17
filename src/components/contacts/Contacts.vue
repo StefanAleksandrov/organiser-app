@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <form action="/send-message" autocomplete="off" method="POST">
+    <form autocomplete="off">
       <label for="email" class="form">Your Email:</label>
       <input type="text" id="email" class="form" />
       <label for="topic" class="form">Topic:</label>

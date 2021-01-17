@@ -44,13 +44,17 @@ export default {
       }
     },
     onNotify(args) {
-      this.notificationMessage = args[0];
-      this.notificationType = args[1];
+      if (args instanceof Array) {
+        this.notificationMessage = args[0];
+        this.notificationType = args[1];
+      } else {
+        this.notificationMessage = args;
+      }
 
       setTimeout(() => {
         this.notificationMessage = "";
         this.notificationType = "";
-      }, 2000);
+      }, 3000);
     },
   },
 };

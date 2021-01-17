@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     onLogout() {
+      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       localStorage.removeItem('userEmail');
       localStorage.removeItem('uid');
       this.$root.$emit("log-change");
-      this.$router.push("/");
     }
   }
 };

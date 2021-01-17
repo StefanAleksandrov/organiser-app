@@ -72,10 +72,13 @@ export default {
                 localStorage.setItem('userEmail', user.email);
                 localStorage.setItem('uid', user.uid);
                 this.$root.$emit('log-change');
+                this.$root.$emit('notify', "Succesfull registration!");
                 this.$router.push("/");
               })
           })
-          .catch(console.log);
+          .catch(err => {
+            this.$root.$emit("notify", [err.message, "error"]);
+          });
       },
 
       onLoginClick() {
@@ -84,9 +87,12 @@ export default {
           localStorage.setItem('userEmail', user.email);
           localStorage.setItem('uid', user.uid);
           this.$root.$emit('log-change');
+          this.$root.$emit('notify', `Welcome, ${this.userEmail}`);
           this.$router.push("/");
         })
-        .catch(console.log);
+        .catch(err => {
+          this.$root.$emit("notify", [err.message, "error"]);
+        });
       }
     },
   }
