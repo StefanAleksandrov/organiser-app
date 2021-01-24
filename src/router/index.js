@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/home/Home'
+import UpcomingEvents from '../components/events/UpcomingEvents'
 import About from '../components/about/About'
 import Login from '../components/authentication/Login'
 import Register from '../components/authentication/Register'
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: UpcomingEvents
   },
   {
     path: '/about',

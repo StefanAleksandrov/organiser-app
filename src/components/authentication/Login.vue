@@ -73,7 +73,8 @@ export default {
   outline: none;
 }
 
-input.form {
+input.form,
+select.form {
   width: 40%;
   height: 35px;
   padding: 0 15px;

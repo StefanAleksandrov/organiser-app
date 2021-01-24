@@ -8,11 +8,12 @@
       <input type="submit" value="Add Avatar" class="form" />
     </div>
 
-    <form action="/add-event" method="POST">
+    <form autocomplete="off">
       <label for="name" class="form">Event Name:</label>
       <input type="text" class="form" id="name" v-model="eventName" />
       <label for="desc" class="form">Event Description:</label>
       <textarea id="desc" v-model="eventDesc" ></textarea>
+      <label for="type" class="form" title="Select 'Open event' to let people join the team.">Select event type:</label>
       <select name="event-type" id="type" v-model="isOpen" class="form" >
         <option :value="true" >Open event</option>
         <option :value="false" >Closed event</option>
@@ -32,7 +33,7 @@ export default {
       creator: "",
       moderators: [],
       members: [],
-      isOpen: "",
+      isOpen: "Select Option",
       eventDate: "",
       createdAt: "",
       modifiedAt: "",
@@ -49,7 +50,7 @@ export default {
 
 .add-event .left {
   display: inline-block;
-  width: 30%;
+  width: 40%;
 }
 
 .add-event .left img {
@@ -62,7 +63,7 @@ export default {
 
 .add-event form {
   display: inline-block;
-  width: 69%;
+  width: 59%;
 }
 
 .add-event form .form {
