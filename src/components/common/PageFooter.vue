@@ -3,7 +3,7 @@
     <div class="container">
       <p class="single-line">&reg;<span> All Rights Reserved</span> </p>
       <p class="single-line">Location: <span>Sofia, Bulgaria</span> </p>
-      <p class="single-line">Email: <span>arh.inj.aleksandrov@abv.bg</span> </p>
+      <p class="single-line">Email: <span><a href="mailto: arh.inj.aleksandrov@abv.bg">arh.inj.aleksandrov@abv.bg</a></span> </p>
       <p class="single-line">Phone: <span>+359 884 760 360</span> </p>
     </div>
     <!-- <p><span>All Rights Reserved</span> &reg;</p> -->
@@ -51,7 +51,11 @@ div.footer div.container {
 
 div.footer p span {
   font-weight: 700;
-  /* color: #f5e7ec; */
   user-select: all;
+}
+
+div.footer p span a {
+  text-decoration: none;
+  color: rgb(85, 54, 49);
 }
 </style>
