@@ -3,7 +3,10 @@
     <page-header :logged="isLoggedIn" />
     <notification v-if="notificationMessage" :message="notificationMessage" :type="notificationType"></notification>
     <main>
-      <router-view />
+      <div class="background"></div>
+      <div class="content">
+        <router-view />
+      </div>
     </main>
     <page-footer />
   </div>
@@ -72,9 +75,11 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  color: #241715;
+  color: #553631;
+  /* color: #B47D99; */
 }
 
+/*NOTIFICATIONS */
 .error {
   text-align: center;
   color: red;
@@ -94,11 +99,38 @@ body {
 
 /* Main Section */
 main {
-  width: 75%;
-  min-height: calc(100vh - 110px);
+  width: 100%;
+  min-height: calc(100vh - 360px);
   margin: 0 auto;
-  padding: 30px;
-  background-color: #f5e7ec;
-  color: #241715;
+  padding: 30px 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+main div.content {
+  z-index: 2;
+}
+
+main div.background {
+  background-image: url('../public/images/app-bg-6.jpg');
+  opacity: 0.5;
+  height: 2000px;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: -2;
+}
+
+h1.main-heading {
+    margin: 50px 0 30px;
+    width: 100%;
+    display: inline-block;
+    font-size: 26px;
+    text-align: center;
 }
 </style>
