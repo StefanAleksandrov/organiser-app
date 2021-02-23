@@ -99,12 +99,12 @@ export default {
 
 <style scoped>
 div.glass {
-  background-color: rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(7.5px);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.5px);
   width: 50%;
   display: block;
   margin: 50px auto;
   border-radius: 15px;
-  box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.1), 3px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px -1px 10px rgba(0, 0, 0, 0.1), 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 </style>
