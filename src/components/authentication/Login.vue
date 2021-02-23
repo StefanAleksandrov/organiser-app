@@ -44,7 +44,7 @@
         :disabled="combinedError"
       />
     </form>
-    <div>
+    <div class="bottom">
       Not a member yet? <router-link to="/register">Register</router-link> here!
     </div>
   </div>
@@ -75,7 +75,7 @@ export default {
 
 input.form,
 select.form {
-  width: 40%;
+  width: 50%;
   height: 35px;
   padding: 0 15px;
   border: 1px solid #703d57;
@@ -100,7 +100,7 @@ div.register div {
 }
 
 input.form[type="submit"] {
-  background-color: #aa6f8d;
+  background-color: rgba(200, 200, 200, 0.5);
 }
 
 input.form[type="submit"]:hover {
@@ -112,5 +112,12 @@ input.form[type="submit"]:hover {
 
 input.form[type="submit"]:disabled {
   cursor: not-allowed;
+  background-color: rgba(125, 125, 125, 0.5);
+  color: #402a2c;
+}
+
+div.bottom {
+  text-align: center;
+  padding-bottom: 50px;
 }
 </style>

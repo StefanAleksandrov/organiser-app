@@ -1,5 +1,7 @@
 <template>
-  <div class="register">
+  <div class="glass">
+    <h1 class="main-heading">Create Account</h1>
+
     <form autocomplete="off" @submit.prevent="onRegisterClick">
       <label
         for="email"
@@ -46,7 +48,7 @@
       <label
         for="re-password"
         class="form"
-        :class="{ 'error': repasswordErrorClass }"
+        :class="{ error: repasswordErrorClass }"
         title="The entered passwords should match!"
         >Repeat Password:</label
       >
@@ -60,7 +62,11 @@
         @change="validateRepassword"
       />
 
-      <p class="error small-text" id="error-password" v-if="repasswordErrorClass">
+      <p
+        class="error small-text"
+        id="error-password"
+        v-if="repasswordErrorClass"
+      >
         Passwords don't match!
       </p>
 
@@ -71,28 +77,34 @@
         :disabled="combinedError"
       />
     </form>
-    
-    <div>
+
+    <div class="bottom">
       Already a member? <router-link to="/login">Login</router-link> here!
     </div>
   </div>
 </template>
 
 <script>
-import authMixin from '../../mixins/auth'
+import authMixin from "../../mixins/auth";
 
 export default {
   name: "home",
   mixins: [authMixin],
   data() {
-    return {
-
-    };
+    return {};
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
 <style scoped>
+div.glass {
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(7.5px);
+  width: 50%;
+  display: block;
+  margin: 50px auto;
+  border-radius: 15px;
+  box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.1), 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
 </style>

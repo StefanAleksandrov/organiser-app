@@ -43,13 +43,14 @@ export default {
 /* Header */
 div.header {
   width: 100%;
-  background-color: #402a2c;
+  background-image: url('../../../public/images/header-img.jpg');
+  background-size: cover;
 }
 
 div.header div.container {
-  height: 50px;
+  height: 450px;
   width: 75%;
-  padding: 0 50px;
+  padding: 25px 50px;
   margin: 0 auto;
 }
 
@@ -57,15 +58,13 @@ div.header div.container > a {
   font-size: 24px;
   font-weight: 700;
   text-decoration: none;
-  color: #ecdde3;
+  color: #f5ecf0;
   font-family: monospace;
 }
 
 div.header div.container > a > span {
-  font-size: 40px;
-  font-weight: 700;
-  color: #ecdde3;
-  font-family: monospace;
+  font-size: 35px;
+  font-family: sans-serif;
 }
 
 div.header ul {

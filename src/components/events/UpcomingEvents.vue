@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <h1>Upcoming Events</h1>
+    <h1 class="main-heading">Upcoming Events</h1>
 
-    <select name="paginationCount" id="pagiCount" class="pagi">
+    <!-- <select name="paginationCount" id="pagiCount" class="pagi">
       <option value="8">8</option>
       <option value="16">16</option>
       <option value="24">24</option>
-    </select>
+    </select> -->
 
     <div class="event">
       <h3>Summer Vacation</h3>
@@ -75,14 +75,6 @@ export default {
 </script>
 
 <style scoped>
-/* Home */
-h1 {
-    margin: 0 0 25px;
-    width: 93%;
-    display: inline-block;
-    font-size: 26px;
-}
-
 div.home .pagi {
     width: 6%;
     margin: 0;
