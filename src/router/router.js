@@ -1,5 +1,8 @@
+//App Import
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+//Components import
 import UpcomingEvents from '../components/events/UpcomingEvents'
 import About from '../components/about/About'
 import Login from '../components/authentication/Login'
@@ -7,6 +10,9 @@ import Register from '../components/authentication/Register'
 import Contacts from '../components/contacts/Contacts'
 import AddEvent from '../components/events/AddEvent'
 import PageNotFound from '../components/common/PageNotFound'
+
+//Route guard
+import auth from './route-guards/authentication'
 
 Vue.use(VueRouter)
 
@@ -52,6 +58,8 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+router.beforeEach(auth);
+
+export default router;

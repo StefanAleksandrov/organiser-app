@@ -1,5 +1,5 @@
 <template>
-  <div class="glass">
+  <div class="glass auth">
     <h1 class="main-heading">Create Account</h1>
 
     <form autocomplete="off" @submit.prevent="onRegisterClick">
@@ -98,13 +98,4 @@ export default {
 </script>
 
 <style scoped>
-div.glass {
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.5px);
-  width: 50%;
-  display: block;
-  margin: 50px auto;
-  border-radius: 15px;
-  box-shadow: -1px -1px 10px rgba(0, 0, 0, 0.1), 1px 1px 10px rgba(0, 0, 0, 0.1);
-}
 </style>

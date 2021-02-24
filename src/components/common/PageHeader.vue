@@ -24,23 +24,25 @@
 <script>
 export default {
   name: "page-header",
+
   props: ["logged"],
+
   data() {
     return {};
   },
+
   methods: {
     onLogout() {
-      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       localStorage.removeItem('userEmail');
       localStorage.removeItem('uid');
+      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       this.$root.$emit("log-change");
     }
-  }
+  },
 };
 </script>
 
 <style scoped>
-/* Header */
 div.header {
   width: 100%;
   background-image: url('../../../public/images/header-img.jpg');
@@ -82,7 +84,8 @@ div.header ul li a:last-of-type {
 }
 
 div.header ul li a:hover {
-  background-color: rgba(200, 200, 200, 0.5);
+  /* background-color: rgba(200, 200, 200, 0.5); */
+  text-decoration: underline;
   cursor: pointer;
 }
 

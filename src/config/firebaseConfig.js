@@ -4,5 +4,5 @@ export const firebaseConfig = {
     projectId: "organiser-app-e74d7",
     storageBucket: "organiser-app-e74d7.appspot.com",
     messagingSenderId: "520473523914",
-    appId: "1:520473523914:web:9613ed9927be1e873d6633"
+    appId: "1:520473523914:web:9613ed9927be1e873d6633",
 }

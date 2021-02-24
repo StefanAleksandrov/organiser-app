@@ -6,7 +6,6 @@
       <p class="single-line">Email: <span><a href="mailto: arh.inj.aleksandrov@abv.bg">arh.inj.aleksandrov@abv.bg</a></span> </p>
       <p class="single-line">Phone: <span>+359 884 760 360</span> </p>
     </div>
-    <!-- <p><span>All Rights Reserved</span> &reg;</p> -->
   </div>
 </template>
 
@@ -33,15 +32,12 @@ div.footer p {
   text-align: center;
   padding-top: 25px;
   margin: 0;
-  /* color: #ecdde3; */
-  user-select: none;
 }
 
 div.footer p.single-line {
   display: inline-block;
   width: 25%;
   text-align: center;
-  user-select: none;
 }
 
 div.footer div.container {
@@ -51,7 +47,6 @@ div.footer div.container {
 
 div.footer p span {
   font-weight: 700;
-  user-select: all;
 }
 
 div.footer p span a {

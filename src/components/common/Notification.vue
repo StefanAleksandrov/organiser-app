@@ -38,17 +38,17 @@
         padding: 0 25px;
         position: absolute;
         right: 15px;
-        top: 65px;
+        top: 465px;
         text-align: center;
         font-size: 24px;
         color: white;
     }
 
     .green {
-        background: rgba(76, 197, 76, 0.85);
+        background: rgba(76, 197, 76, 0.65);
     }
 
     .red {
-        background: rgba(253, 69, 100, 0.85);
+        background: rgba(253, 69, 100, 0.65);
     }
 </style>

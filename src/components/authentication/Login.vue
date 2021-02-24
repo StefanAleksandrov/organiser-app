@@ -1,51 +1,56 @@
 <template>
-  <div class="login">
-    <form autocomplete="off" @submit.prevent="onLoginClick">
-      <label for="email" class="form" :class="{ error: emailErrorClass }">
-        Email:
-      </label>
+  <div class="glass auth">
+    <h1 class="main-heading">Login with your Account</h1>
 
-      <input
-        type="text"
-        id="email"
-        class="form"
-        v-model.lazy="userEmail"
-        :class="{ 'error-border': emailErrorClass }"
-        @change="validateEmail"
-      />
+    <div class="login">
+      <form autocomplete="off" @submit.prevent="onLoginClick">
+        <label for="email" class="form" :class="{ error: emailErrorClass }">
+          Email:
+        </label>
 
-      <p class="error" id="error-email" v-if="emailErrorClass">
-        Invalid email!
-      </p>
+        <input
+          type="text"
+          id="email"
+          class="form"
+          v-model.lazy="userEmail"
+          :class="{ 'error-border': emailErrorClass }"
+          @change="validateEmail"
+        />
 
-      <label
-        for="loginPassword"
-        class="form"
-        :class="{ error: passwordErrorClass }"
-        >Password:
-      </label>
+        <p class="error" id="error-email" v-if="emailErrorClass">
+          Invalid email!
+        </p>
 
-      <input
-        type="password"
-        id="loginPassword"
-        class="form"
-        :class="{ 'error-border': passwordErrorClass }"
-        v-model.lazy="userPassword"
-        @change="validatePassword"
-      />
+        <label
+          for="loginPassword"
+          class="form"
+          :class="{ error: passwordErrorClass }"
+          >Password:
+        </label>
 
-      <p class="error" id="error-password" v-if="passwordErrorClass">
-        Invalid password!
-      </p>
-      <input
-        type="submit"
-        value="Login"
-        class="form"
-        :disabled="combinedError"
-      />
-    </form>
-    <div class="bottom">
-      Not a member yet? <router-link to="/register">Register</router-link> here!
+        <input
+          type="password"
+          id="loginPassword"
+          class="form"
+          :class="{ 'error-border': passwordErrorClass }"
+          v-model.lazy="userPassword"
+          @change="validatePassword"
+        />
+
+        <p class="error" id="error-password" v-if="passwordErrorClass">
+          Invalid password!
+        </p>
+        <input
+          type="submit"
+          value="Login"
+          class="form"
+          :disabled="combinedError"
+        />
+      </form>
+      <div class="bottom">
+        Not a member yet?
+        <router-link to="/register">Register</router-link> here!
+      </div>
     </div>
   </div>
 </template>
@@ -66,6 +71,13 @@ export default {
 </script>
 
 <style>
+div.glass.auth {
+  width: 50%;
+  display: block;
+  margin: 50px auto;
+  border-radius: 15px;
+}
+
 .form {
   display: block;
   margin: 10px auto;
@@ -74,7 +86,8 @@ export default {
 }
 
 input.form,
-select.form {
+select.form,
+textarea.form {
   width: 50%;
   height: 35px;
   padding: 0 15px;
@@ -119,5 +132,9 @@ input.form[type="submit"]:disabled {
 div.bottom {
   text-align: center;
   padding-bottom: 50px;
+}
+
+div.bottom a {
+  color: inherit;
 }
 </style>
