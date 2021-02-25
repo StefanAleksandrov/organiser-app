@@ -1,5 +1,5 @@
 <template>
-  <div class="glass">
+  <div :class="classGlass">
     <h1 class="main-heading">Create Account</h1>
 
     <form autocomplete="off" @submit.prevent="onRegisterClick">
@@ -19,6 +19,8 @@
         v-model.lazy="userEmail"
         @change="validateEmail"
       />
+      <i class="far fa-envelope fa-lg first"></i>
+
 
       <p class="error small-text" id="error-email" v-if="emailErrorClass">
         Invalid email, please check the spelling again!
@@ -40,6 +42,7 @@
         v-model.lazy="userPassword"
         @change="validatePassword"
       />
+      <i class="fas fa-lock fa-lg second"></i>
 
       <p class="error small-text" id="error-password" v-if="passwordErrorClass">
         Password should be 6 symbols or more!
@@ -61,6 +64,7 @@
         v-model.lazy="userRepassword"
         @change="validateRepassword"
       />
+      <i class="fas fa-lock fa-lg third"></i>
 
       <p
         class="error small-text"
@@ -89,22 +93,43 @@ import authMixin from "../../mixins/auth";
 
 export default {
   name: "home",
-  mixins: [authMixin],
-  data() {
-    return {};
+
+  mounted() {
+    setTimeout(function () {
+      this.classGlass += ' animate';
+    }.bind(this), 1)
   },
+
+  mixins: [authMixin],
+
+  data() {
+    return {
+      classGlass: 'glass auth',
+    };
+  },
+
   methods: {},
 };
 </script>
 
 <style scoped>
-div.glass {
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.5px);
-  width: 50%;
-  display: block;
-  margin: 50px auto;
-  border-radius: 15px;
-  box-shadow: -1px -1px 10px rgba(0, 0, 0, 0.1), 1px 1px 10px rgba(0, 0, 0, 0.1);
+.fas,
+.far,
+.fab{
+  font-size: 20px;
+  position: absolute;
+  left: 215px;
+}
+
+.first {
+  top: 164px;
+}
+
+.second {
+  top: 272px;
+}
+
+.third {
+  top: 380px;
 }
 </style>

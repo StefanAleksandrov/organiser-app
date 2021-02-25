@@ -24,10 +24,13 @@
 <script>
 export default {
   name: "page-header",
+
   props: ["logged"],
+
   data() {
     return {};
   },
+
   methods: {
     onLogout() {
       this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
@@ -35,12 +38,11 @@ export default {
       localStorage.removeItem('uid');
       this.$root.$emit("log-change");
     }
-  }
+  },
 };
 </script>
 
 <style scoped>
-/* Header */
 div.header {
   width: 100%;
   background-image: url('../../../public/images/header-img.jpg');
@@ -48,7 +50,7 @@ div.header {
 }
 
 div.header div.container {
-  height: 450px;
+  height: 425px;
   width: 75%;
   padding: 25px 50px;
   margin: 0 auto;
@@ -82,7 +84,8 @@ div.header ul li a:last-of-type {
 }
 
 div.header ul li a:hover {
-  background-color: rgba(200, 200, 200, 0.5);
+  /* background-color: rgba(200, 200, 200, 0.5); */
+  text-decoration: underline;
   cursor: pointer;
 }
 

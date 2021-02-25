@@ -1,27 +1,45 @@
 <template>
-  <div class="not-found">
-    <h1>404</h1>
-    <p>The page you are looking for is not found.</p>
-    <p>This may be because it doesn't exist or it is not published yet.</p>
+  <div :class="classGlass">
+      <h1>404</h1>
+      <i class="far fa-sad-cry fa-10x"></i>
+      <p>The page you are looking for was not found.</p>
+      <p>This may be because it doesn't exist or it is not published yet.</p>
+      <div class="bottom">If you are sure this page exists, please try again later!</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "home",
+
+  mounted() {
+    setTimeout(function () {
+      this.classGlass += ' animate';
+    }.bind(this), 1)
+  },
+
   data() {
-    return {};
+    return {
+      classGlass: 'glass not-found'
+    };
   },
 };
 </script>
 
 <style scoped>
+.not-found {
+  width: 75%;
+  margin: 500px auto;
+  padding: 1px 50px;
+  border-radius: 15px;
+}
+
 h1 {
-  font-size: 120px;
+  font-size: 60px;
   font-weight: bold;
-  color: #402A2C;
+  color: #402a2c;
   text-align: center;
-  margin-top: 100px;
+  opacity: 0.75;
 }
 
 p {
@@ -29,4 +47,15 @@ p {
   font-size: 20px;
 }
 
+p:last-of-type {
+  margin-bottom: 100px;
+}
+
+.fas,
+.far,
+.fab {
+  /* font-size: 240px; */
+  margin-bottom: 50px;
+  width: 100%;
+}
 </style>
