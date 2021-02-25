@@ -81,13 +81,4 @@ export default {
 </script>
 
 <style scoped>
-div.home .pagi {
-  width: 6%;
-  margin: 0;
-  height: 31px;
-  border-radius: 5px;
-  text-align: center;
-  text-align-last: center;
-  -moz-text-align-last: center;
-}
 </style>

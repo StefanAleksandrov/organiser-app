@@ -1,5 +1,5 @@
 <template>
-  <div class="glass add-event">
+  <div :class="classGlass">
     <form autocomplete="off" @submit.prevent="createNewEvent">
       <h1 class="main-heading">Create New Event</h1>
 
@@ -12,8 +12,20 @@
       <label for="imageUrl" class="form">Event Image URL:</label>
       <input type="text" class="form" id="imageUrl" v-model="eventImgUrl" />
 
-      <label for="type" class="form" title="Select 'Open event' to let people join the team.">Open Event:</label>
-      <input type="checkbox" class="form-checkbox" id="type" v-model="eventIsOpen" />
+      <label for="" class="form">Pick a Date</label>
+      <vuejs-datepicker
+        input-class="form"
+        calendar-class="calendar"
+        v-model="eventDate"
+        :monday-first="true"
+        :typeable="true"
+        :open-date="today"
+        :disabled-dates="disabledDates"
+        placeholder="------" >
+      </vuejs-datepicker>
+
+      <label for="type" class="form" title="Select 'Open event' to let people join the team.">Private Event:</label>
+      <input type="checkbox" class="form-checkbox" id="type" v-model="eventIsPrivate" />
 
       <input type="submit" class="form" value="Create" :disabled="disabled" />
     </form>
@@ -25,9 +37,16 @@
 <script>
 import eventsService from '../../mixins/eventsService';
 import eventsValidate from '../../mixins/eventsValidate';
+import Datepicker from 'vuejs-datepicker';
 
 export default {
   name: "add-event",
+
+  mounted() {
+    setTimeout(function () {
+      this.classGlass += ' animate';
+    }.bind(this), 1)
+  },
 
   data () {
     return {
@@ -37,11 +56,20 @@ export default {
       eventCreator: "",
       eventModerators: [],
       eventMembers: [],
-      eventIsOpen: "",
+      eventIsPrivate: false,
       eventDate: "",
       disabled: true,
+
+      classGlass: 'glass add-event',
+
+      today: new Date(),
+      disabledDates: {
+        to: new Date(),
+      }
     };
   },
+
+  components: { 'vuejs-datepicker': Datepicker },
 
   mixins: [eventsService, eventsValidate],
 };
@@ -49,9 +77,10 @@ export default {
 
 <style scoped>
 .add-event {
-  margin: 50px auto;
+  margin: 500px auto;
   width: 50%;
   border-radius: 15px;
+  transition: all .6s ease-out;
 }
 
 .form-checkbox {

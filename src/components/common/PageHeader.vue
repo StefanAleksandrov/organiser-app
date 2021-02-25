@@ -33,9 +33,9 @@ export default {
 
   methods: {
     onLogout() {
+      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       localStorage.removeItem('userEmail');
       localStorage.removeItem('uid');
-      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       this.$root.$emit("log-change");
     }
   },
@@ -50,7 +50,7 @@ div.header {
 }
 
 div.header div.container {
-  height: 450px;
+  height: 425px;
   width: 75%;
   padding: 25px 50px;
   margin: 0 auto;

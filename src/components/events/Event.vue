@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="event" v-for="event in events" :key="event.id">
+    <div class="glass event" v-for="event in events" :key="event.id">
       <h3>{{event.name}}</h3>
       <p>Participants:</p>
       <p>Pesho, Stamat, Mariyka</p>
@@ -25,19 +25,12 @@ export default {
 <style scoped>
 div.event {
   display: inline-block;
-  width: 24%;
+  width: 22.5%;
   height: 400px;
   padding: 0 10px;
-  margin: 5px;
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  margin: 25px 7.5px 12.5px;
   border-radius: 10px;
   position: relative;
-}
-
-div.event:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
 }
 
 div.event h3 {

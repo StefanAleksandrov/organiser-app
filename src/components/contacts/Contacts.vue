@@ -1,5 +1,5 @@
 <template>
-  <div class="glass contacts">
+  <div :class="classGlass">
     <h1 class="main-heading">Get in touch with us!</h1>
 
     <div class="contacts">
@@ -43,6 +43,12 @@
 export default {
   name: "home",
 
+  mounted() {
+    setTimeout(function () {
+      this.classGlass += ' animate';
+    }.bind(this), 1)
+  },
+
   created() {
     //Check if logged in
     if (this.$parent.isLoggedIn) {
@@ -56,6 +62,7 @@ export default {
       topic: "",
       message: "",
       disabled: true,
+      classGlass: 'glass contacts',
     };
   },
 
@@ -79,10 +86,11 @@ export default {
 
 <style scoped>
 div.glass.contacts {
-  width: 70%;
+  width: 50%;
   display: block;
-  margin: 50px auto;
+  margin: 500px auto;
   border-radius: 15px;
+  transition: all .6s ease-out;
 }
 
 textarea.form {

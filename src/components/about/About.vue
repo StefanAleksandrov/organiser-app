@@ -1,5 +1,5 @@
 <template>
-  <div class="about glass">
+  <div :class="classGlass">
     <h1>Your Pocket Organiser!</h1>
     <p>
       Welcome to Organizer web application! With the help of this application
@@ -24,18 +24,28 @@
 <script>
 export default {
   name: "home",
+
+  mounted() {
+    setTimeout(function () {
+      this.classGlass += ' animate';
+    }.bind(this), 1)
+  },
+
   data() {
-    return {};
+    return {
+      classGlass: 'about glass',
+    };
   },
 };
 </script>
 
 <style scoped>
 div.about {
-  width: 60%;
-  margin: 50px auto 10px;
+  width: 50%;
+  margin: 500px auto;
   padding: 10px 40px 50px;
   border-radius: 15px;
+  transition: all .6s ease-out;
 }
 
 div.about h1 {
