@@ -44,17 +44,17 @@ main div.content {
 }
 
 main div.background {
-  background-image: url("/images/app-bg-6.jpg");
+  background-image: url("/images/app-bg-7.jpg");
   opacity: 0.5;
   height: 2000px;
   background-position: center;
   background-repeat: repeat-y;
-  background-size: contain;
+  background-size: cover;
   position: absolute;
   width: 100%;
   top: 0;
   left: 50%;
-  transform: translate(-50%, -30%);
+  transform: translate(-50%, -2%);
   z-index: -2;
 }
 

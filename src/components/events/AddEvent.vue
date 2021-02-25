@@ -51,13 +51,13 @@ export default {
   data () {
     return {
       eventName: "",
-      eventImgUrl: '',
       eventDesc: "",
+      eventImgUrl: '',
+      eventDate: "",
+      eventIsPrivate: false,
       eventCreator: "",
       eventModerators: [],
       eventMembers: [],
-      eventIsPrivate: false,
-      eventDate: "",
       disabled: true,
 
       classGlass: 'glass add-event',
