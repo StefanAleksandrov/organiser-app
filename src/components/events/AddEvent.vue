@@ -21,7 +21,7 @@
         :typeable="true"
         :open-date="today"
         :disabled-dates="disabledDates"
-        placeholder="------" >
+        placeholder="DD MM YYYY" >
       </vuejs-datepicker>
 
       <label for="type" class="form" title="Select 'Open event' to let people join the team.">Private Event:</label>

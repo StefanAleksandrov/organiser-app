@@ -1,22 +1,26 @@
 export default {
     data () {
         return {
-            nameErr : true,
-            descErr : true,
-            imgErr : true,
+            nameErr : false,
+            descErr : false,
+            imgErr : false,
+            dateErr : false,
         }
     },
 
     methods: {
         validateEventName () {
-            if (this.eventName) {
-                this.checkAllInputs();
-            }
+            if (this.eventName) this.checkAllInputs();
+            else this.nameErr = true;
+        },
+
+        validateEventDesc () {
+            if (this.eventDesc) this.checkAllInputs();
+            else this.descErr = true;
         },
 
         checkAllInputs () {
-            //Check
-            this.disabled = false;
+            if( !this.nameErr && !this.descErr && !this.imgErr && !this.dateErr) this.disabled = false;
         },
     },
 }
