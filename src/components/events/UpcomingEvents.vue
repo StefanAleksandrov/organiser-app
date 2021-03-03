@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1 class="main-heading">Upcoming Events</h1>
-    <event :events="events"></event>
+    <event v-for="event in events" :key="event.id" :event="event"></event>
   </div>
 </template>
 

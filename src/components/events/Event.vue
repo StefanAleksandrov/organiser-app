@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="glass event" v-for="event in events" :key="event.id">
-      <h3>Event Name</h3>
-      <img :src="event.imgUrl" :alt="event.name"/>
-      <router-link tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
-    </div>
+  <div class="glass event">
+    <h3>{{event.eventName}}</h3>
+    <img :src="event.imageUrl" :alt="event.name"/>
+    <p><i class="far fa-calendar"></i>{{date}}</p>
+    <p><i class="fas fa-map-marker-alt"></i>{{event.eventLocation}}</p>
+    <router-link tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
   </div>
 </template>
 
@@ -12,16 +12,40 @@
 export default {
   name: "event",
 
-  props: ['events'],
+  props: ['event'],
 
   data() {
-    return {};
+    return {
+      months: {
+        '01': ' Jan ',
+        '02': ' Feb ',
+        '03': ' Mar ',
+        '04': ' Apr ',
+        '05': ' May ',
+        '06': ' Jun ',
+        '07': ' Jul ',
+        '08': ' Aug ',
+        '09': ' Sep ',
+        '10': ' Oct ',
+        '11': ' Nov ',
+        '12': ' Dec ',
+      }
+    };
   },
+
+  computed: {
+    date: function () {
+      let initialDate = this.event.eventDate.split("T")[0];
+      let [year, month, day] = initialDate.split("-");
+
+      return day + this.months[month] + year;
+    },
+  }
 };
 </script>
 
 <style scoped>
-div.event {
+.event {
   display: inline-block;
   width: 22.5%;
   height: 400px;
@@ -31,25 +55,28 @@ div.event {
   position: relative;
 }
 
-div.event h3 {
-  margin: 15px 0;
+.event h3 {
+  margin: 25px 0;
   text-align: center;
   font-size: 20px;
 }
 
-div.event p {
+.event p {
   text-align: center;
-  margin-bottom: 15px;
 }
 
-div.event img {
+.event p i {
+  margin-right: 10px;
+}
+
+.event img {
   width: 100%;
   height: 200px;
   margin: 0 auto;
   border-radius: 5px;
 }
 
-div.event button.event-btn {
+.event button.event-btn {
   width: 90%;
   height: 30px;
   margin: auto;
@@ -63,7 +90,7 @@ div.event button.event-btn {
   right: 0;
 }
 
-div.event button.event-btn:hover {
+.event button.event-btn:hover {
   background-color: #553631;
   color: #ecdde3;
   cursor: pointer;

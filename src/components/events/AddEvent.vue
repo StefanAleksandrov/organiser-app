@@ -63,6 +63,20 @@
       </vuejs-datepicker>
 
       <label
+        for="location"
+        :class="['form', locationErr ? 'error' : '']"
+        title="Location should be between 5 and 50 symbols!"
+        >Event Location:</label
+      >
+      <input
+        type="text"
+        :class="['form', locationErr ? 'error error-border' : '']"
+        id="location"
+        v-model="eventLocation"
+        @change="validateEventLocation"
+      />
+
+      <label
         for="type"
         class="form"
         title="Select 'Open event' to let people join the team."
@@ -108,6 +122,7 @@ export default {
       eventCreator: "",
       eventModerators: [],
       eventMembers: [],
+      eventLocation: '',
       disabled: true,
 
       classGlass: "glass add-event",

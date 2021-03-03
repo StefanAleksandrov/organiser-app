@@ -5,6 +5,7 @@ export default {
             descErr : false,
             imgErr : false,
             dateErr : false,
+            locationErr : false,
         }
     },
 
@@ -33,6 +34,13 @@ export default {
         validateEventDate () {
             if (this.eventDate) this.dateErr = false;
             else this.dateErr = true;
+
+            this.checkAllInputs();
+        },
+
+        validateEventLocation() {
+            if (this.eventLocation && this.eventLocation.length > 4 && this.eventLocation.length < 51) this.locationErr = false;
+            else this.locationErr = true;
 
             this.checkAllInputs();
         },

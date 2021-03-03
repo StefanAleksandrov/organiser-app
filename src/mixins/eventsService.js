@@ -16,6 +16,7 @@ export default {
                 eventName: this.eventName,
                 eventDate: this.eventDate,
                 eventDesc: this.eventDesc,
+                eventLocation: this.eventLocation,
                 imageUrl: this.eventImgUrl,
                 isPrivate: this.eventIsPrivate,
                 modifiedAt: new Date(),
@@ -44,7 +45,14 @@ export default {
 
             fetch(getAllURL)
                 .then(resp => resp.json())
-                .then(events => this.events = events)
+                .then(events => {
+                    for (const key in events) {
+                        if (Object.hasOwnProperty.call(events, key)) {
+                            events[key].id = key;
+                            this.events.push(events[key]);
+                        }
+                    }
+                })
                 .catch(err => console.log(err));
         }
     },
