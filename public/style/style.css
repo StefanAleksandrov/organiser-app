@@ -15,7 +15,7 @@ body {
 /*NOTIFICATIONS */
 .error {
   text-align: center;
-  color: red;
+  color: red !important;
 }
 
 .small-text {

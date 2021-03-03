@@ -10,19 +10,31 @@ export default {
 
     methods: {
         validateEventName () {
-            if (this.eventName && this.eventName.length > 3 && this.eventName.length < 25) this.checkAllInputs();
+            if (this.eventName && this.eventName.length > 4 && this.eventName.length < 26) this.nameErr = false;
             else this.nameErr = true;
+
+            this.checkAllInputs();
         },
 
         validateEventDesc () {
-            if (this.eventDesc && this.eventDesc.length > 5 && this.eventDesc < 100) this.checkAllInputs();
+            if (this.eventDesc && this.eventDesc.length > 10 && this.eventDesc.length < 100) this.descErr = false;
             else this.descErr = true;
         },
 
         validateEventImgUrl () {
-            const imgRegex = /^https?/i
-            if (this.eventImgUrl && imgRegex.test(this.eventImgUrl)) this.checkAllInputs();
-            else this.descErr = true;
+            const imgRegex = /^https?/i;
+
+            if (this.eventImgUrl && imgRegex.test(this.eventImgUrl)) this.imgErr = false;
+            else this.imgErr = true;
+
+            this.checkAllInputs();
+        },
+
+        validateEventDate () {
+            if (this.eventDate) this.dateErr = false;
+            else this.dateErr = true;
+
+            this.checkAllInputs();
         },
 
         checkAllInputs () {

@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="glass event" v-for="event in events" :key="event.id">
-      <h3>{{event.name}}</h3>
-      <p>Participants:</p>
-      <p>Pesho, Stamat, Mariyka</p>
-      <img :src="event.imgUrl" :alt="event.imgAlt"/>
+      <h3>Event Name</h3>
+      <img :src="event.imgUrl" :alt="event.name"/>
       <router-link tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
     </div>
   </div>

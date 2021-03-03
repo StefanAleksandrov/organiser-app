@@ -1,27 +1,51 @@
 const URL = "https://organiser-app-e74d7-default-rtdb.europe-west1.firebasedatabase.app/";
+import { auth } from '../config/firebaseInit.js';
+
 
 export default {
     methods: {
-        createNewEvent () {
-            let createURL = URL + `events/${this.eventName}.json`;
-            console.log(this.isOpen);
-            console.log(createURL);
+        createNewEvent() {
+            //If user is not logged in, cancel the operation and redirect to Login page;
+            if (!localStorage.getItem("uid")) this.$router.push('/login');
 
-            // this.isOpen = '';
-            // let event = {
-            //     createdAt: new Date(),
-            //     creator: localStorage.getItem("uid"),
-            //     eventDate: '',
-            //     eventDesc: this.eventDesc,
-            //     imageUrl: this.eventImgUrl,
-            //     isOpen: this.isOpen,
-            //     modifiedAt: new Date(),
-            // }
+            let createURL = URL + `events.json`;
 
-            // fetch(createURL, event)
-            //     .then(resp => resp.json())
-            //     .then(data => console.log(data))
-            //     .catch(err => console.log(err));
+            let event = {
+                createdAt: new Date(),
+                creator: localStorage.getItem("uid"),
+                eventName: this.eventName,
+                eventDate: this.eventDate,
+                eventDesc: this.eventDesc,
+                imageUrl: this.eventImgUrl,
+                isPrivate: this.eventIsPrivate,
+                modifiedAt: new Date(),
+            }
+
+
+            auth.currentUser.getIdToken(false)
+                .then(idToken => {
+                    return fetch(createURL + `?auth=${idToken}`, {
+                        method: 'POST',
+                        body: JSON.stringify(event),
+                    });
+                })
+                .then(resp => resp.json())
+                .then(eventId => this.$router.push(`events/${eventId.name}/details`))
+                .catch(err => console.log(err));
         },
+
+        getEventById() {
+            console.log(this.$route.params);
+
+        },
+
+        getAllEvents() {
+            let getAllURL = URL + `events.json`;
+
+            fetch(getAllURL)
+                .then(resp => resp.json())
+                .then(events => this.events = events)
+                .catch(err => console.log(err));
+        }
     },
 }
