@@ -9,19 +9,15 @@
 </template>
 
 <script>
+import animations from "../../mixins/animations";
+
 export default {
   name: "home",
 
-  mounted() {
-    setTimeout(function () {
-      this.classGlass += ' animate';
-    }.bind(this), 1)
-  },
+  mixins: [animations],
 
   data() {
-    return {
-      classGlass: 'glass not-found'
-    };
+    return {};
   },
 };
 </script>
@@ -35,6 +31,7 @@ export default {
 }
 
 h1 {
+  padding: 50px 0 0;
   font-size: 60px;
   font-weight: bold;
   color: #402a2c;
@@ -54,7 +51,6 @@ p:last-of-type {
 .fas,
 .far,
 .fab {
-  /* font-size: 240px; */
   margin-bottom: 50px;
   width: 100%;
 }

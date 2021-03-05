@@ -22,25 +22,21 @@
 </template>
 
 <script>
+import animations from "../../mixins/animations";
+
 export default {
   name: "home",
 
-  mounted() {
-    setTimeout(function () {
-      this.classGlass += ' animate';
-    }.bind(this), 1)
-  },
+  mixins: [animations],
 
   data() {
-    return {
-      classGlass: 'about glass',
-    };
+    return {};
   },
 };
 </script>
 
 <style scoped>
-div.about {
+.start {
   width: 50%;
   margin: 500px auto;
   padding: 10px 40px 50px;
@@ -48,19 +44,19 @@ div.about {
   transition: all .6s ease-out;
 }
 
-div.about h1 {
+.start h1 {
   font-size: 2rem;
   text-align: center;
   margin: 30px 0 50px;
 }
 
-div.about p {
+.start p {
   font-size: 1.5rem;
   font-size: 18px;
   text-align: justify;
 }
 
-div.about p a {
+.start p a {
   font-weight: 700;
   color: #703d57;
 }

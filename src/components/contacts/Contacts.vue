@@ -40,14 +40,12 @@
 </template>
 
 <script>
+import animations from "../../mixins/animations";
+
 export default {
   name: "home",
-
-  mounted() {
-    setTimeout(function () {
-      this.classGlass += ' animate';
-    }.bind(this), 1)
-  },
+  
+  mixins: [animations],
 
   created() {
     //Check if logged in
@@ -62,7 +60,6 @@ export default {
       topic: "",
       message: "",
       disabled: true,
-      classGlass: 'glass contacts',
     };
   },
 
@@ -85,14 +82,6 @@ export default {
 </script>
 
 <style scoped>
-div.glass.contacts {
-  width: 50%;
-  display: block;
-  margin: 500px auto;
-  border-radius: 15px;
-  transition: all .6s ease-out;
-}
-
 textarea.form {
   padding: 20px;
   width: 50%;

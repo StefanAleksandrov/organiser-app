@@ -99,6 +99,7 @@
 <script>
 import eventsService from "../../mixins/eventsService";
 import eventsValidate from "../../mixins/eventsValidate";
+import animations from "../../mixins/animations";
 import Datepicker from "vuejs-datepicker";
 
 export default {
@@ -106,10 +107,6 @@ export default {
 
   mounted() {
     this.getEventById();
-
-    setTimeout( function () {
-      this.classGlass += " animate";
-    }.bind(this), 1);
   },
 
   data() {
@@ -125,8 +122,6 @@ export default {
       eventLocation: '',
       disabled: true,
 
-      classGlass: "glass add-event",
-
       today: new Date(),
       disabledDates: {
         to: new Date(),
@@ -136,7 +131,7 @@ export default {
 
   components: { "vuejs-datepicker": Datepicker },
 
-  mixins: [eventsService, eventsValidate],
+  mixins: [eventsService, eventsValidate, animations],
 };
 </script>
 

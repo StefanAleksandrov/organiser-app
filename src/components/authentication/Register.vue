@@ -83,22 +83,15 @@
 
 <script>
 import authMixin from "../../mixins/auth";
+import animations from "../../mixins/animations";
 
 export default {
   name: "home",
 
-  mounted() {
-    setTimeout(function () {
-      this.classGlass += ' animate';
-    }.bind(this), 1)
-  },
-
-  mixins: [authMixin],
+  mixins: [authMixin, animations],
 
   data() {
-    return {
-      classGlass: 'glass auth',
-    };
+    return {};
   },
 
   methods: {},
