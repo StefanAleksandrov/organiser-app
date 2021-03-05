@@ -4,7 +4,7 @@
 
     <div class="login">
       <form autocomplete="off" @submit.prevent="onLoginClick">
-        <label for="email" :class="['form', { error: emailErrorClass }]">
+        <label for="email" class="form">
           Email:
         </label>
 
@@ -19,11 +19,11 @@
 
         <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass } ]"></i>
 
-        <p class="error small-text" v-if="emailErrorClass">
+        <p class="small-text" v-if="emailErrorClass">
           Invalid email, please check the spelling again!
         </p>
 
-        <label for="loginPassword" :class="['form', { error: passwordErrorClass }]" >
+        <label for="loginPassword" class="form" >
           Password:
         </label>
 
@@ -38,7 +38,7 @@
 
         <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass }]"></i>
 
-        <p class="error small-text" id="error-password" v-if="passwordErrorClass">
+        <p class="small-text" id="error-password" v-if="passwordErrorClass">
           Password should be 6 symbols or more!
         </p>
 

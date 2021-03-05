@@ -5,7 +5,7 @@
     <form autocomplete="off" @submit.prevent="onRegisterClick">
       <label
         for="email"
-        :class="['form', { error: emailErrorClass }]"
+        class="form"
         title="Please enter a valid email address!"
         >Email:</label
       >
@@ -21,13 +21,13 @@
       <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
 
 
-      <p class="error small-text" v-if="emailErrorClass">
+      <p class="small-text" v-if="emailErrorClass">
         Invalid email, please check the spelling again!
       </p>
 
       <label
         for="password"
-        :class="['form', { error: passwordErrorClass }]"
+        class="form"
         title="The password should be 6 digits or more!"
         >Password:</label
       >
@@ -42,13 +42,13 @@
       />
       <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass } ]"></i>
 
-      <p class="error small-text" v-if="passwordErrorClass">
+      <p class="small-text" v-if="passwordErrorClass">
         Password should be 6 symbols or more!
       </p>
 
       <label
         for="re-password"
-        :class="['form', { error: repasswordErrorClass }]"
+        class="form"
         title="The entered passwords should match!"
         >Repeat Password:</label
       >
@@ -63,7 +63,7 @@
       />
       <i :class="['fas fa-lock fa-lg third', { 'error': repasswordErrorClass } ]"></i>
 
-      <p class="error small-text" v-if="repasswordErrorClass" >
+      <p class="small-text" v-if="repasswordErrorClass" >
         Passwords don't match!
       </p>
 
