@@ -66,8 +66,6 @@ import animations from "../../mixins/animations";
 export default {
   name: "home",
 
-  mixins: [authMixin, animations],
-
   created() {
     this.repasswordError = false;
   },
@@ -75,6 +73,8 @@ export default {
   data() {
     return {};
   },
+
+  mixins: [authMixin, animations],
 };
 </script>
 

@@ -7,6 +7,7 @@
 <script>
     export default {
         name: "notification",
+
         props: {
             message: {
                 type: String,
@@ -18,10 +19,12 @@
                 default: "",
             }
         },
+
         data() {
             return {
             }
         },
+        
         computed: {
             classType() {
                 return this.type == "error" ? "red" : "green";

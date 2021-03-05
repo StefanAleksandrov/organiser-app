@@ -8,8 +8,6 @@ export default {
             //If user is not logged in, cancel the operation and redirect to Login page;
             if (!localStorage.getItem("uid")) this.$router.push('/login');
 
-            let createURL = URL + `events.json`;
-
             let event = {
                 createdAt: new Date(),
                 creator: localStorage.getItem("uid"),
@@ -22,28 +20,28 @@ export default {
                 modifiedAt: new Date(),
             }
 
-
             auth.currentUser.getIdToken(false)
                 .then(idToken => {
-                    return fetch(createURL + `?auth=${idToken}`, {
+                    return fetch(URL + `events.json?auth=${idToken}`, {
                         method: 'POST',
                         body: JSON.stringify(event),
                     });
                 })
                 .then(resp => resp.json())
                 .then(eventId => this.$router.push(`events/${eventId.name}/details`))
-                .catch(err => console.log(err));
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
+
         },
 
-        getEventById() {
-            console.log(this.$route.params);
-
+        getEventById(id) {
+            fetch(URL + `events/${id}.json`)
+                .then(resp => resp.json())
+                .then(event => this.event = event)
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
         },
 
         getAllEvents() {
-            let getAllURL = URL + `events.json`;
-
-            fetch(getAllURL)
+            fetch(URL + 'events.json')
                 .then(resp => resp.json())
                 .then(events => {
                     for (const key in events) {
@@ -53,7 +51,7 @@ export default {
                         }
                     }
                 })
-                .catch(err => console.log(err));
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
         }
     },
 }

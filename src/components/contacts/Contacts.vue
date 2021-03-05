@@ -44,8 +44,6 @@ import animations from "../../mixins/animations";
 
 export default {
   name: "home",
-  
-  mixins: [animations],
 
   created() {
     //Check if logged in
@@ -78,6 +76,8 @@ export default {
       }
     },
   },
+  
+  mixins: [animations],
 };
 </script>
 

@@ -99,9 +99,7 @@ export default {
               this.$router.push("/");
             })
         })
-        .catch(err => {
-          this.$root.$emit("notify", [err.message, "error"]);
-        });
+        .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
     },
 
     onLoginClick() {
@@ -113,9 +111,7 @@ export default {
           this.$root.$emit('notify', `Welcome, ${this.userEmail}`);
           this.$router.push("/");
         })
-        .catch(err => {
-          this.$root.$emit("notify", [err.message, "error"]);
-        });
+        .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
     }
   },
 }

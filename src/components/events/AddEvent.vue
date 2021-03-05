@@ -105,10 +105,6 @@ import Datepicker from "vuejs-datepicker";
 export default {
   name: "add-event",
 
-  mounted() {
-    this.getEventById();
-  },
-
   data() {
     return {
       eventName: "",

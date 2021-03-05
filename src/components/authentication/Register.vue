@@ -88,13 +88,13 @@ import animations from "../../mixins/animations";
 export default {
   name: "home",
 
-  mixins: [authMixin, animations],
-
   data() {
     return {};
   },
 
   methods: {},
+
+  mixins: [authMixin, animations],
 };
 </script>
 

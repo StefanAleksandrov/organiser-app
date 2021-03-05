@@ -14,11 +14,11 @@ import animations from "../../mixins/animations";
 export default {
   name: "home",
 
-  mixins: [animations],
-
   data() {
     return {};
   },
+
+  mixins: [animations],
 };
 </script>
 

@@ -9,6 +9,7 @@ import Login from '../components/authentication/Login'
 import Register from '../components/authentication/Register'
 import Contacts from '../components/contacts/Contacts'
 import AddEvent from '../components/events/AddEvent'
+import Details from '../components/events/Details'
 import PageNotFound from '../components/common/PageNotFound'
 
 //Route guard
@@ -22,31 +23,43 @@ const routes = [
     name: 'Home',
     component: UpcomingEvents
   },
+
   {
     path: '/about',
     name: 'About',
     component: About
   },
+
   {
     path: '/login',
     name: 'Login',
     component: Login
   },
+
   {
     path: '/register',
     name: 'Register',
     component: Register
   },
+
   {
     path: '/contacts',
     name: 'Contacts',
     component: Contacts
   },
+
   {
     path: '/add-event',
     name: 'AddEvent',
     component: AddEvent
   },
+  
+  {
+    path: '/events/:id/details',
+    name: 'Details',
+    component: Details
+  },
+
   {
     path: '/*',
     name: 'PageNotFound',
