@@ -15,28 +15,23 @@ export default {
       passwordError: true,
       repasswordError: true,
       combinedError: true,
+
+      emailRegex : /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
     };
   },
   methods: {
     validateEmail() {
-      let emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
-      if (this.userEmail.match(emailRegex) && this.userEmail.length > 5) {
-        this.emailError = false;
-        this.emailErrorClass = false;
-      } else if (this.userEmail !== "") {
+      if (this.userEmail !== "" && (!this.userEmail.match(this.emailRegex) || this.userEmail.length <= 5)) {
         this.emailError = true;
         this.emailErrorClass = true;
+        return;
       }
 
       this.checkAllInputs();
     },
 
     validatePassword() {
-      if (this.userPassword.length > 5) {
-        this.passwordError = false;
-        this.passwordErrorClass = false;
-      } else {
+      if(this.userPassword.length <= 5) {
         this.passwordError = true;
         this.passwordErrorClass = true;
       }
@@ -45,10 +40,7 @@ export default {
     },
 
     validateRepassword() {
-      if (this.userPassword == this.userRepassword) {
-        this.repasswordError = false;
-        this.repasswordErrorClass = false;
-      } else {
+      if (this.userPassword != this.userRepassword) {
         this.repasswordError = true;
         this.repasswordErrorClass = true;
       }
@@ -61,7 +53,38 @@ export default {
         this.combinedError = false;
         return;
       }
+      
       this.combinedError = true;
+    },
+
+    markValid(field) {
+      switch(field) {
+        case 'email':
+          if (this.userEmail.match(this.emailRegex) && this.userEmail.length > 5) {
+            this.emailError = false;
+            this.emailErrorClass = false;
+          }
+
+          this.checkAllInputs();
+          break;
+        case 'password':
+          if (this.userPassword.length > 5) {
+            this.passwordError = false;
+            this.passwordErrorClass = false;
+          }
+
+          this.checkAllInputs();
+          break;
+        case 're-password':
+          if (this.userPassword == this.userRepassword) {
+            this.repasswordError = false;
+            this.repasswordErrorClass = false;
+    
+          }
+
+          this.checkAllInputs();
+          break;
+      }
     },
 
     onRegisterClick() {

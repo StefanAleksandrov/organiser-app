@@ -5,8 +5,7 @@
     <form autocomplete="off" @submit.prevent="onRegisterClick">
       <label
         for="email"
-        class="form"
-        :class="{ error: emailErrorClass }"
+        :class="['form', { error: emailErrorClass }]"
         title="Please enter a valid email address!"
         >Email:</label
       >
@@ -14,22 +13,21 @@
       <input
         type="text"
         id="email"
-        class="form"
-        :class="{ 'error-border': emailErrorClass }"
-        v-model.lazy="userEmail"
+        :class="['form', { 'error error-border': emailErrorClass }]"
+        v-model="userEmail"
         @change="validateEmail"
+        @input="markValid('email')"
       />
-      <i class="far fa-envelope fa-lg first"></i>
+      <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
 
 
-      <p class="error small-text" id="error-email" v-if="emailErrorClass">
+      <p class="error small-text" v-if="emailErrorClass">
         Invalid email, please check the spelling again!
       </p>
 
       <label
         for="password"
-        class="form"
-        :class="{ error: passwordErrorClass }"
+        :class="['form', { error: passwordErrorClass }]"
         title="The password should be 6 digits or more!"
         >Password:</label
       >
@@ -37,21 +35,20 @@
       <input
         type="password"
         id="password"
-        class="form"
-        :class="{ 'error-border': passwordErrorClass }"
-        v-model.lazy="userPassword"
+        :class="['form', { 'error error-border': passwordErrorClass }]"
+        v-model="userPassword"
         @change="validatePassword"
+        @input="markValid('password')"
       />
-      <i class="fas fa-lock fa-lg second"></i>
+      <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass } ]"></i>
 
-      <p class="error small-text" id="error-password" v-if="passwordErrorClass">
+      <p class="error small-text" v-if="passwordErrorClass">
         Password should be 6 symbols or more!
       </p>
 
       <label
         for="re-password"
-        class="form"
-        :class="{ error: repasswordErrorClass }"
+        :class="['form', { error: repasswordErrorClass }]"
         title="The entered passwords should match!"
         >Repeat Password:</label
       >
@@ -59,18 +56,14 @@
       <input
         type="password"
         id="re-password"
-        class="form"
-        :class="{ 'error-border': repasswordErrorClass }"
-        v-model.lazy="userRepassword"
+        :class="['form', { 'error error-border': repasswordErrorClass }]"
+        v-model="userRepassword"
         @change="validateRepassword"
+        @input="markValid('re-password')"
       />
-      <i class="fas fa-lock fa-lg third"></i>
+      <i :class="['fas fa-lock fa-lg third', { 'error': repasswordErrorClass } ]"></i>
 
-      <p
-        class="error small-text"
-        id="error-password"
-        v-if="repasswordErrorClass"
-      >
+      <p class="error small-text" v-if="repasswordErrorClass" >
         Passwords don't match!
       </p>
 

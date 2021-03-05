@@ -21,7 +21,9 @@ body {
 .small-text {
   font-size: 12px;
   font-style: italic;
-  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .error-border {

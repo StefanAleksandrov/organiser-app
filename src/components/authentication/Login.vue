@@ -4,44 +4,44 @@
 
     <div class="login">
       <form autocomplete="off" @submit.prevent="onLoginClick">
-        <label for="email" class="form" :class="{ error: emailErrorClass }">
+        <label for="email" :class="['form', { error: emailErrorClass }]">
           Email:
         </label>
 
         <input
           type="text"
           id="email"
-          class="form"
-          v-model.lazy="userEmail"
-          :class="{ 'error-border': emailErrorClass }"
+          v-model="userEmail"
+          :class="['form', { 'error error-border': emailErrorClass }]"
           @change="validateEmail"
+          @input="markValid('email')"
         />
-        <i class="far fa-envelope fa-lg first"></i>
 
-        <p class="error" id="error-email" v-if="emailErrorClass">
-          Invalid email!
+        <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass } ]"></i>
+
+        <p class="error small-text" v-if="emailErrorClass">
+          Invalid email, please check the spelling again!
         </p>
 
-        <label
-          for="loginPassword"
-          class="form"
-          :class="{ error: passwordErrorClass }"
-          >Password:
+        <label for="loginPassword" :class="['form', { error: passwordErrorClass }]" >
+          Password:
         </label>
 
         <input
           type="password"
           id="loginPassword"
-          class="form"
-          :class="{ 'error-border': passwordErrorClass }"
-          v-model.lazy="userPassword"
+          :class="['form', { 'error error-border': passwordErrorClass }]"
+          v-model="userPassword"
           @change="validatePassword"
+          @input="markValid('password')"
         />
-        <i class="fas fa-lock fa-lg second"></i>
 
-        <p class="error" id="error-password" v-if="passwordErrorClass">
-          Invalid password!
+        <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass }]"></i>
+
+        <p class="error small-text" id="error-password" v-if="passwordErrorClass">
+          Password should be 6 symbols or more!
         </p>
+
         <input
           type="submit"
           value="Login"
@@ -49,10 +49,12 @@
           :disabled="combinedError"
         />
       </form>
+
       <div class="bottom">
         Not a member yet?
         <router-link to="/register">Register</router-link> here!
       </div>
+
     </div>
   </div>
 </template>
