@@ -3,7 +3,6 @@
     <div class="container">
       <router-link to="/"><span>O</span>RGANISER APP</router-link>
       <ul>
-        <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/contacts">Contacts</router-link></li>
 
         <template v-if="logged">
@@ -13,6 +12,7 @@
         </template>
 
         <template v-else>
+          <li><router-link to="/about">About</router-link></li>
           <li><router-link to="/login">Login</router-link></li>
           <li><router-link to="/register">Register</router-link></li>
         </template>
