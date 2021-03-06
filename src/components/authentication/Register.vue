@@ -10,15 +10,17 @@
         >Email:</label
       >
 
-      <input
-        type="text"
-        id="email"
-        :class="['form', { 'error error-border': emailErrorClass }]"
-        v-model="userEmail"
-        @change="validateEmail"
-        @input="markValid('email')"
-      />
-      <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
+      <article class="container">
+        <input
+          type="text"
+          id="email"
+          :class="['form', { 'error error-border': emailErrorClass }]"
+          v-model="userEmail"
+          @change="validateEmail"
+          @input="markValid('email')"
+        />
+        <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
+      </article>
 
 
       <p class="small-text" v-if="emailErrorClass">
@@ -32,15 +34,17 @@
         >Password:</label
       >
 
-      <input
-        type="password"
-        id="password"
-        :class="['form', { 'error error-border': passwordErrorClass }]"
-        v-model="userPassword"
-        @change="validatePassword"
-        @input="markValid('password')"
-      />
-      <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass } ]"></i>
+      <article class="container">
+        <input
+          type="password"
+          id="password"
+          :class="['form', { 'error error-border': passwordErrorClass }]"
+          v-model="userPassword"
+          @change="validatePassword"
+          @input="markValid('password')"
+        />
+        <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass } ]"></i>
+      </article>
 
       <p class="small-text" v-if="passwordErrorClass">
         Password should be 6 symbols or more!
@@ -53,15 +57,17 @@
         >Repeat Password:</label
       >
 
-      <input
-        type="password"
-        id="re-password"
-        :class="['form', { 'error error-border': repasswordErrorClass }]"
-        v-model="userRepassword"
-        @change="validateRepassword"
-        @input="markValid('re-password')"
-      />
-      <i :class="['fas fa-lock fa-lg third', { 'error': repasswordErrorClass } ]"></i>
+      <article class="container">
+        <input
+          type="password"
+          id="re-password"
+          :class="['form', { 'error error-border': repasswordErrorClass }]"
+          v-model="userRepassword"
+          @change="validateRepassword"
+          @input="markValid('re-password')"
+        />
+        <i :class="['fas fa-lock fa-lg third', { 'error': repasswordErrorClass } ]"></i>
+      </article>
 
       <p class="small-text" v-if="repasswordErrorClass" >
         Passwords don't match!
@@ -99,23 +105,22 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.container .form {
+  width: 100%;
+}
+
 .fas,
 .far,
 .fab{
   font-size: 20px;
   position: absolute;
-  left: 215px;
-}
-
-.first {
-  top: 164px;
-}
-
-.second {
-  top: 272px;
-}
-
-.third {
-  top: 380px;
+  left: 15px;
+  top: 10px;
 }
 </style>

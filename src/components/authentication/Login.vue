@@ -8,16 +8,18 @@
           Email:
         </label>
 
-        <input
-          type="text"
-          id="email"
-          v-model="userEmail"
-          :class="['form', { 'error error-border': emailErrorClass }]"
-          @change="validateEmail"
-          @input="markValid('email')"
-        />
+        <article class="container">
+          <input
+            type="text"
+            id="email"
+            v-model="userEmail"
+            :class="['form', { 'error error-border': emailErrorClass }]"
+            @change="validateEmail"
+            @input="markValid('email')"
+          />
 
-        <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass } ]"></i>
+          <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass } ]"></i>
+        </article>
 
         <p class="small-text" v-if="emailErrorClass">
           Invalid email, please check the spelling again!
@@ -27,16 +29,18 @@
           Password:
         </label>
 
-        <input
-          type="password"
-          id="loginPassword"
-          :class="['form', { 'error error-border': passwordErrorClass }]"
-          v-model="userPassword"
-          @change="validatePassword"
-          @input="markValid('password')"
-        />
+        <article class="container">
+          <input
+            type="password"
+            id="loginPassword"
+            :class="['form', { 'error error-border': passwordErrorClass }]"
+            v-model="userPassword"
+            @change="validatePassword"
+            @input="markValid('password')"
+          />
 
-        <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass }]"></i>
+          <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass }]"></i>
+        </article>
 
         <p class="small-text" id="error-password" v-if="passwordErrorClass">
           Password should be 6 symbols or more!
@@ -79,18 +83,21 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.container .form {
+  width: 100%;
+}
+
 .fas,
 .far,
 .fab{
   position: absolute;
-  left: 215px;
-}
-
-.first {
-  top: 164px;
-}
-
-.second {
-  top: 272px;
+  left: 15px;
+  top: 10px;
 }
 </style>
