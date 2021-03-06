@@ -78,6 +78,7 @@
         value="Register"
         class="form"
         :disabled="combinedError"
+        title="All fields are required!"
       />
     </form>
 

@@ -1,10 +1,10 @@
 <template>
   <div :class="classGlass">
-      <h1>404</h1>
-      <i class="far fa-sad-cry fa-10x"></i>
-      <p>The page you are looking for was not found.</p>
-      <p>This may be because it doesn't exist or it is not published yet.</p>
-      <div class="bottom">If you are sure this page exists, please try again later!</div>
+      <h1>Page Under Construction</h1>
+      <!-- <i class="fa fa-code fa-10x"></i> -->
+      <i class="fas fa-tools fa-10x"></i>
+      <p>The page you are looking for is not published yet.</p>
+      <div class="bottom">Please try again later!</div>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 <style scoped>
 h1 {
   padding: 50px 0 0;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
   color: #402a2c;
   text-align: center;
@@ -38,14 +38,14 @@ p {
 }
 
 p:last-of-type {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .fas,
 .far,
 .fab,
 .fa {
-  margin-bottom: 50px;
+  margin: 50px 0;
   width: 100%;
 }
 </style>

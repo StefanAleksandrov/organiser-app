@@ -27,7 +27,7 @@
           @input="validate"
           v-model="message"
         ></textarea>
-        <input type="submit" value="Send" class="form" :disabled="disabled" />
+        <input type="submit" value="Send" class="form" :disabled="disabled" title="All fields are required!" />
       </form>
 
       <div class="bottom">

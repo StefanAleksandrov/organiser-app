@@ -175,7 +175,8 @@ input.form[type="submit"]:disabled {
 /* Icons */
 .fas,
 .far,
-.fab {
+.fab,
+.fa {
   text-align: center;
   opacity: 0.75;
 }

@@ -11,6 +11,7 @@ import Contacts from '../components/contacts/Contacts'
 import AddEvent from '../components/events/AddEvent'
 import Details from '../components/events/Details'
 import PageNotFound from '../components/common/PageNotFound'
+import PageUnderConstruction from '../components/common/PageUnderConstruction'
 
 //Route guard
 import auth from './route-guards/authentication'
@@ -46,6 +47,18 @@ const routes = [
     path: '/contacts',
     name: 'Contacts',
     component: Contacts
+  },
+
+  {
+    path: '/questions-and-answers',
+    name: 'Q&A',
+    component: PageUnderConstruction,
+  },
+
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: PageUnderConstruction,
   },
 
   {
