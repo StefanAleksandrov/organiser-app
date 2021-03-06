@@ -11,6 +11,16 @@
         <p class="block" >Location: {{event.eventLocation}} </p>
         <time class="block" > Date: {{event.eventDate}} </time>
     </article>
+
+    <div>
+      <button class="event-btn">Apply</button>
+
+      <button class="event-btn">Leave</button>
+
+      <button class="event-btn">Edit</button>
+
+      <button class="event-btn">Delete</button>
+    </div>
   </div>
 </template>
 

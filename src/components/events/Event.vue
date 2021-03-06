@@ -76,7 +76,7 @@ export default {
   border-radius: 5px;
 }
 
-.event button.event-btn {
+.event .event-btn {
   width: 90%;
   height: 30px;
   margin: auto;
@@ -90,7 +90,7 @@ export default {
   right: 0;
 }
 
-.event button.event-btn:hover {
+.event .event-btn:hover {
   background-color: #553631;
   color: #ecdde3;
   cursor: pointer;

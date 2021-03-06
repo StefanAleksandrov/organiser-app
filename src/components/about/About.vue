@@ -34,7 +34,7 @@ export default {
 
   data() {
     return {
-      events: ["Birthday Party", "Wedding", "Custom Event"],
+      events: ["Birthday Party", "Wedding", 'Vacation', 'Special Occasion', "Custom Event"],
       eventMsg: '',
       wordIndex: 0,
       letterIndex: 0,
@@ -52,7 +52,7 @@ export default {
         this.letterIndex = 0;
       }
 
-      setTimeout(this.typing, 400);
+      setTimeout(this.typing, 300);
     },
   },
 
