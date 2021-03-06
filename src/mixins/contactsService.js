@@ -4,31 +4,32 @@ import { auth } from '../config/firebaseInit.js';
 
 export default {
     methods: {
-        createNewEvent() {
+        createNewMsg() {
             //If user is not logged in, cancel the operation and redirect to Login page;
             if (!localStorage.getItem("uid")) this.$router.push('/login');
 
-            let event = {
+            let msg = {
+                isRead: false,
                 createdAt: new Date(),
                 creator: localStorage.getItem("uid"),
-                eventName: this.eventName,
-                eventDate: this.eventDate,
-                eventDesc: this.eventDesc,
-                eventLocation: this.eventLocation,
-                imageUrl: this.eventImgUrl,
-                isPrivate: this.eventIsPrivate,
-                modifiedAt: new Date(),
+                email: this.email,
+                topic: this.topic,
+                message: this.message,
             }
 
             auth.currentUser.getIdToken(false)
                 .then(idToken => {
-                    return fetch(URL + `events.json?auth=${idToken}`, {
+                    return fetch(URL + `messages.json?auth=${idToken}`, {
                         method: 'POST',
-                        body: JSON.stringify(event),
+                        body: JSON.stringify(msg),
                     });
                 })
                 .then(resp => resp.json())
-                .then(eventId => this.$router.push(`events/${eventId.name}/details`))
+                .then((msgId) => {
+                    console.log(msgId);
+                    this.$router.push('/');
+                    this.$root.$emit('notify', 'Thank you for contacting us!');
+                })
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
 
         },

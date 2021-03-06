@@ -1,6 +1,7 @@
 <template>
   <div :class="classGlass">
     <h1>Your Pocket Organiser!</h1>
+    <h2>Organise your {{eventMsg}}</h2>
     <p>
       Welcome to Organizer web application! With the help of this application
       you can organize your day / event / special occasion easier than ever
@@ -27,8 +28,32 @@ import animations from "../../mixins/animations";
 export default {
   name: "home",
 
+  created() {
+    this.typing();
+  },
+
   data() {
-    return {};
+    return {
+      events: ["Birthday Party", "Wedding", "Custom Event"],
+      eventMsg: '',
+      wordIndex: 0,
+      letterIndex: 0,
+    };
+  },
+
+  methods: {
+    typing() {
+      if (this.wordIndex === this.events.length) this.wordIndex = 0;
+
+      this.eventMsg = this.events[this.wordIndex].slice(0, ++this.letterIndex);
+
+      if (this.letterIndex === this.events[this.wordIndex].length) {
+        this.wordIndex++;
+        this.letterIndex = 0;
+      }
+
+      setTimeout(this.typing, 400);
+    },
   },
 
   mixins: [animations],
@@ -36,18 +61,32 @@ export default {
 </script>
 
 <style scoped>
-.start {
-  width: 50%;
-  margin: 500px auto;
-  padding: 10px 40px 50px;
-  border-radius: 15px;
-  transition: all .6s ease-out;
-}
-
 .start h1 {
   font-size: 2rem;
   text-align: center;
   margin: 30px 0 50px;
+}
+
+.start h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.start h2::after {
+  content: '';
+  margin-left: 2px;
+  border: 2px solid;
+  animation: blink 0.4s infinite ease;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .start p {

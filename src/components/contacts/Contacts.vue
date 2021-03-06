@@ -3,7 +3,7 @@
     <h1 class="main-heading">Get in touch with us!</h1>
 
     <div class="contacts">
-      <form autocomplete="off" @submit.prevent="sendMessage">
+      <form autocomplete="off" @submit.prevent="createNewMsg">
         <label for="email" class="form">Your Email:</label>
         <input
           type="text"
@@ -41,6 +41,7 @@
 
 <script>
 import animations from "../../mixins/animations";
+import contactsService from "../../mixins/contactsService";
 
 export default {
   name: "home",
@@ -62,14 +63,6 @@ export default {
   },
 
   methods: {
-    sendMessage() {
-      //TODO send the message with its corresponding topic and email
-
-      this.email = "";
-      this.topic = "";
-      this.message = "";
-    },
-
     validate() {
       if (this.email && this.topic && this.message) {
         this.disabled = false;
@@ -77,7 +70,7 @@ export default {
     },
   },
   
-  mixins: [animations],
+  mixins: [animations, contactsService],
 };
 </script>
 

@@ -102,9 +102,10 @@ h1.main-heading {
 
 /*Auth style*/
 .glass.start {
-  width: 50%;
+  width: 75%;
   display: block;
   margin: 500px auto;
+  padding: 10px 40px 50px;
   border-radius: 15px;
   transition: all .6s ease-out;
 }

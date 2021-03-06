@@ -1,0 +1,1 @@
+export const URL= "https://organiser-app-e74d7-default-rtdb.europe-west1.firebasedatabase.app/"
