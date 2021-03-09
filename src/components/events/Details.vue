@@ -1,27 +1,27 @@
 <template>
   <div :class="classGlass">
-    <h1 class="main-heading">{{event.eventName}}</h1>
+    <h1 class="main-heading">{{event.name}}</h1>
 
     <article class="container">
-        <img :src="event.imageUrl" alt="event.eventName">
+        <img :src="event.imageUrl" :alt="event.name">
     </article>
 
     <article class="container">
-      <h3 class="description">{{event.eventDesc}}</h3>
-      <p class="block" ><i class="fas fa-map-marker-alt"></i> Location: {{event.eventLocation}} </p>
-      <time class="block" ><i class="far fa-calendar"></i> Date: {{event.eventDate}} </time>
+      <h3 class="description">{{event.desc}}</h3>
+      <p class="block" ><i class="fas fa-map-marker-alt"></i> Location: {{event.location}} </p>
+      <time class="block" ><i class="far fa-calendar"></i> Date: {{eventDate}} </time>
 
       <div class="btns">
         <template v-if="isOwner">
-          <button class="event-btn" @click="editEvent" >Edit</button>
+          <button class="event-btn" @click="editEvent($route.params.id)" >Edit</button>
 
           <button class="event-btn" @click="deleteEvent($route.params.id)" >Delete</button>
         </template>
 
-        <template v-else-if="!event.isPrivate">
-          <button class="event-btn" @click="applyEvent" >Apply</button>
+        <template v-else-if="event.isPublic">
+          <button class="event-btn" @click="joinEvent($route.params.id)" >Join</button>
 
-          <button class="event-btn" @click="leaveEvent" >Leave</button>
+          <button class="event-btn" @click="leaveEvent($route.params.id)" >Leave</button>
         </template>
       </div>
 
@@ -48,6 +48,16 @@ export default {
     };
   },
 
+  computed: {
+    eventDate() {
+      if (this.event.date) {
+        return this.event.date.split("T")[0];
+      }
+
+      return "";
+    }
+  },
+
   mixins: [eventsService, animations],
 };
 </script>
@@ -59,7 +69,7 @@ export default {
     padding: 75px 10px;
     text-align: center;
     text-anchor: start;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 img {
@@ -69,6 +79,8 @@ img {
 
 .description {
     min-height: 100px;
+    margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .block {
