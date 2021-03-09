@@ -9,6 +9,7 @@
         title="Event name should be between 5 and 25 symbols!"
         >Event Name:</label
       >
+
       <input
         type="text"
         :class="['form', nameErr ? 'error error-border' : '']"
@@ -23,6 +24,7 @@
         title="Event name should be between 10 and 100 symbols!"
         >Event Description:</label
       >
+
       <textarea
         :class="['form', descErr ? 'error error-border' : '']"
         id="desc"
@@ -36,6 +38,7 @@
         title="Please provide a valid URL!"
         >Event Image URL:</label
       >
+
       <input
         type="text"
         :class="['form', imgErr ? 'error error-border' : '']"
@@ -60,6 +63,7 @@
         placeholder="DD MM YYYY"
         @input="validateEventDate"
       >
+
       </vuejs-datepicker>
 
       <label
@@ -80,14 +84,30 @@
         for="type"
         class="form"
         title="Select 'Open event' to let people join the team."
-        >Private Event:</label
+        >Public Event:</label
       >
+      
       <input
         type="checkbox"
         class="form-checkbox"
         id="type"
-        v-model="eventIsPrivate"
+        v-model="eventIsPublic"
       />
+
+      <template v-if="eventIsPublic" >
+        <label
+          for="members"
+          class="form"
+          >Invite Members:</label
+        >
+
+        <input
+          type="text"
+          class="form"
+          id="members"
+          v-model="eventMembers"
+        />
+      </template>
 
       <input type="submit" class="form" value="Create" :disabled="disabled" />
     </form>
@@ -111,9 +131,7 @@ export default {
       eventDesc: "",
       eventImgUrl: "",
       eventDate: "",
-      eventIsPrivate: false,
-      eventCreator: "",
-      eventModerators: [],
+      eventIsPublic: false,
       eventMembers: [],
       eventLocation: '',
       disabled: true,
@@ -132,19 +150,14 @@ export default {
 </script>
 
 <style scoped>
-.add-event {
-  margin: 500px auto;
-  width: 50%;
-  border-radius: 15px;
-  transition: all 0.6s ease-out;
-}
-
 .form-checkbox {
   display: block;
   margin: 0 auto;
+  width: 15px;
+  height: 15px;
 }
 
-.add-event form textarea {
+form textarea {
   display: block;
   padding: 20px;
   height: 150px;

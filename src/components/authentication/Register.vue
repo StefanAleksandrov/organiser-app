@@ -22,9 +22,31 @@
         <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
       </article>
 
-
       <p class="small-text" v-if="emailErrorClass">
         Invalid email, please check the spelling again!
+      </p>
+      
+      <label
+        for="username"
+        class="form"
+        title="Please enter a username!"
+        >Username:</label
+      >
+
+      <article class="container">
+        <input
+          type="text"
+          id="username"
+          :class="['form', { 'error error-border': usernameErrorClass }]"
+          v-model="username"
+          @change="validateUsername"
+          @input="markValid('username')"
+        />
+        <i :class="['fas fa-hashtag fa-lg first', { 'error': usernameErrorClass }]" ></i>
+      </article>
+
+      <p class="small-text" v-if="usernameErrorClass">
+        Username should be 4 symbols or more!
       </p>
 
       <label

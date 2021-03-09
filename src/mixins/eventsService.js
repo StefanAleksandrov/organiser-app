@@ -11,12 +11,13 @@ export default {
             let event = {
                 createdAt: new Date(),
                 creator: localStorage.getItem("uid"),
-                eventName: this.eventName,
-                eventDate: this.eventDate,
-                eventDesc: this.eventDesc,
-                eventLocation: this.eventLocation,
+                name: this.eventName,
+                date: this.eventDate,
+                desc: this.eventDesc,
+                location: this.eventLocation,
                 imageUrl: this.eventImgUrl,
-                isPrivate: this.eventIsPrivate,
+                isPublic: this.eventIsPupblic,
+                members: this.eventMembers,
                 modifiedAt: new Date(),
             }
 
@@ -29,15 +30,19 @@ export default {
                 })
                 .then(resp => resp.json())
                 .then(eventId => this.$router.push(`events/${eventId.name}/details`))
-                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
 
         },
 
         getEventById(id) {
             fetch(URL + `events/${id}.json`)
                 .then(resp => resp.json())
-                .then(event => this.event = event)
-                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
+                .then(event => {
+                    const userId = localStorage.getItem("uid");
+                    this.event = event;
+                    this.isOwner = event.creator == userId ? true : false;
+                })
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
         getAllEvents() {
@@ -51,7 +56,32 @@ export default {
                         }
                     }
                 })
-                .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
-        }
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+        },
+
+        editEvent() {
+
+        },
+
+        deleteEvent(id) {
+            if (confirm("You are about to delete this event. Are you sure?")) {
+                auth.currentUser.getIdToken(false)
+                    .then(idToken => {
+                        return fetch(URL + `events/${id}.json?auth=${idToken}`, { method: "DELETE" });
+                    })
+                    .then(() => this.$router.push('/'))
+                    .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+            }
+
+
+        },
+
+        applyEvent() {
+
+        },
+
+        leaveEvent() {
+
+        },
     },
 }
