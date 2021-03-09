@@ -72,6 +72,12 @@ const routes = [
     name: 'Details',
     component: Details
   },
+  
+  {
+    path: '/edit-event/:id',
+    name: 'EditEvent',
+    component: AddEvent
+  },
 
   {
     path: '/*',

@@ -9,7 +9,7 @@
     <main>
       <div class="background"></div>
       <div class="content">
-        <router-view />
+        <router-view :key="$route.path" />
       </div>
     </main>
     <page-footer />
