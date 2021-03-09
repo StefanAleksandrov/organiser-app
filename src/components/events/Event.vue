@@ -2,8 +2,8 @@
   <div class="glass event">
     <h3>{{event.name}}</h3>
     <img :src="event.imageUrl" :alt="event.name"/>
-    <p><i class="far fa-calendar"></i>{{date}}</p>
-    <p><i class="fas fa-map-marker-alt"></i>{{event.eventlocation}}</p>
+    <p><i class="far fa-calendar"></i>{{event.date.split("T")[0]}}</p>
+    <p><i class="fas fa-map-marker-alt"></i>{{event.location}}</p>
     <router-link tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
   </div>
 </template>
