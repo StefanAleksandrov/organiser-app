@@ -1,7 +1,8 @@
 <template>
   <div :class="classGlass">
-    <form autocomplete="off" @submit.prevent="createNewEvent">
-      <h1 class="main-heading">Create New Event</h1>
+    <form autocomplete="off" >
+      <h1 v-if="$route.params.id" class="main-heading">Update Event</h1>
+      <h1 v-else class="main-heading">Create New Event</h1>
 
       <label
         for="name"
@@ -109,7 +110,8 @@
         />
       </template>
 
-      <input type="submit" class="form" value="Create" :disabled="disabled" />
+      <input v-if="$route.params.id" type="submit" class="form" value="Update" @click.prevent="updateEvent($route.params.id)" />
+      <input v-else type="submit" class="form" value="Create" :disabled="disabled" @click.prevent="createNewEvent" />
     </form>
 
     <div class="bottom"></div>
@@ -125,22 +127,45 @@ import Datepicker from "vuejs-datepicker";
 export default {
   name: "add-event",
 
+  created() {
+    if (this.$route.params.id) {
+      this.getEventById(this.$route.params.id);
+    }
+  },
+
   data() {
     return {
       eventName: "",
       eventDesc: "",
       eventImgUrl: "",
       eventDate: "",
+      eventLocation: '',
       eventIsPublic: false,
       eventMembers: [],
-      eventLocation: '',
       disabled: true,
+
+      event: {},
 
       today: new Date(),
       disabledDates: {
         to: new Date(),
       },
     };
+  },
+
+  watch: {
+    event(newV) {
+      if (newV) {
+        if (Object.keys(newV).length > 0) {
+          this.eventName = newV.name;
+          this.eventDesc = newV.desc;
+          this.eventImgUrl = newV.imageUrl;
+          this.eventDate = newV.date;
+          this.eventLocation = newV.location;
+          this.eventIsPublic = newV.isPublic;
+        }
+      }
+    },
   },
 
   components: { "vuejs-datepicker": Datepicker },

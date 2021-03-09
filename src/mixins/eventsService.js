@@ -16,7 +16,7 @@ export default {
                 desc: this.eventDesc,
                 location: this.eventLocation,
                 imageUrl: this.eventImgUrl,
-                isPublic: this.eventIsPupblic,
+                isPublic: this.eventIsPublic,
                 members: this.eventMembers,
                 modifiedAt: new Date(),
             }
@@ -29,9 +29,40 @@ export default {
                     });
                 })
                 .then(resp => resp.json())
-                .then(eventId => this.$router.push(`events/${eventId.name}/details`))
+                .then(eventId => this.$router.push(`/events/${eventId.name}/details`))
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+        },
 
+        updateEvent(id) {
+            //If user is not logged in, cancel the operation and redirect to Login page;
+            if (!localStorage.getItem("uid")) this.$router.push('/login');
+
+            let updatedEvent = {
+                name: this.eventName,
+                date: this.eventDate,
+                desc: this.eventDesc,
+                location: this.eventLocation,
+                imageUrl: this.eventImgUrl,
+                isPublic: this.eventIsPublic,
+                modifiedAt: new Date(),
+            }
+
+            fetch(URL + `events/${id}.json`)
+                .then(resp => resp.json())
+                .then(event => {
+                    const sendEvent = Object.assign({}, event, updatedEvent);
+
+                    auth.currentUser.getIdToken(false)
+                        .then(idToken => {
+                            return fetch(URL + `events/${id}.json?auth=${idToken}`, {
+                                method: 'PUT',
+                                body: JSON.stringify(sendEvent),
+                            });
+                        })
+                        .then(() => this.$router.push(`/events/${id}/details`))
+                        .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+                })
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
         getEventById(id) {
@@ -55,12 +86,22 @@ export default {
                             this.events.push(events[key]);
                         }
                     }
+
+                    this.events = this.events.sort((a, b) => {
+                        let [yearA, monthA, dayA] = a.date.split("T")[0].split("-");
+                        let [yearB, monthB, dayB] = b.date.split("T")[0].split("-");
+
+                        let daysA = yearA * 365 + monthA * 30 + dayA;
+                        let daysB = yearB * 365 + monthB * 30 + dayB;
+
+                        return daysA - daysB;
+                    })
                 })
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        editEvent() {
-
+        editEvent(id) {
+            this.$router.push(`/edit-event/${id}`);
         },
 
         deleteEvent(id) {
