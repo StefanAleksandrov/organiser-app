@@ -1,7 +1,7 @@
 <template>
   <div :class="classGlass">
     <h1>Your Pocket Organiser!</h1>
-    <h2>Organise your {{eventMsg}}</h2>
+    <h2>Organise your <span>{{eventMsg}}</span></h2>
     <p>
       Welcome to Organizer web application! With the help of this application
       you can organize your day / event / special occasion easier than ever
@@ -50,9 +50,12 @@ export default {
       if (this.letterIndex === this.events[this.wordIndex].length) {
         this.wordIndex++;
         this.letterIndex = 0;
+        setTimeout(this.typing, 750);
+
+      } else {
+        setTimeout(this.typing, 150);
       }
 
-      setTimeout(this.typing, 300);
     },
   },
 
@@ -68,14 +71,20 @@ export default {
 }
 
 .start h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-bottom: 50px;
 }
 
-.start h2::after {
+.start h2 span {
+  display: block;
+  font-size: 1.5rem;
+  position: relative;
+  top: 10px;
+}
+
+.start h2 span::after {
   content: '';
-  margin-left: 2px;
   border: 2px solid;
   animation: blink 0.4s infinite ease;
 }
