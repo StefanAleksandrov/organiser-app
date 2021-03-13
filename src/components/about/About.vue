@@ -16,9 +16,9 @@
     </p>
     <p>
       If this sounds like the thing you need, we urge you to
-      <a href="/register">register</a> now for free!
+      <router-link to="/register">register</router-link> now for free!
     </p>
-    <p>Already a member? <a href="/login">Login</a> and start organising!</p>
+    <p>Already a member? <router-link to="/login">Login</router-link> and start organising!</p>
   </div>
 </template>
 
