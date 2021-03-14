@@ -49,7 +49,7 @@ export default {
 
       } else {
         this.isLoggedIn = false;
-        this.$router.push('/');
+        this.$router.go('/');
       }
     },
     onNotify ( args ) {

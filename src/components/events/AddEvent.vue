@@ -57,7 +57,6 @@
         :input-class="['form', dateErr ? 'error error-border' : '']"
         calendar-class="calendar"
         v-model="eventDate"
-        :monday-first="true"
         :typeable="true"
         :open-date="today"
         :disabled-dates="disabledDates"
@@ -115,9 +114,11 @@ export default {
   created() {
     //edit event
     if (this.$route.params.id) {
+      //private event
       if (this.$route.params.uid) {
         this.getEventById(this.$route.params.id, true);
 
+      //public event
       } else {
         this.getEventById(this.$route.params.id);
       }

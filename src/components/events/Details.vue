@@ -13,21 +13,21 @@
 
       <div class="btns">
         <template v-if="isOwner && $route.params.uid">
-          <button class="event-btn" @click="editEvent($route.params.id, true)" >Edit</button>
-
-          <button class="event-btn" @click="deleteEvent($route.params.id, true)" >Delete</button>
-        </template>
-
-        <template v-else-if="isOwner && !$route.params.uid">
           <button class="event-btn" @click="editEvent($route.params.id)" >Edit</button>
 
           <button class="event-btn" @click="deleteEvent($route.params.id)" >Delete</button>
         </template>
 
-        <template v-else-if="event.isPublic">
-          <button class="event-btn" @click="joinEvent($route.params.id)" >Join</button>
+        <template v-else-if="isOwner && !$route.params.uid">
+          <button class="event-btn" @click="editEvent($route.params.id, true)" >Edit</button>
 
-          <button class="event-btn" @click="leaveEvent($route.params.id)" >Leave</button>
+          <button class="event-btn" @click="deleteEvent($route.params.id, true)" >Delete</button>
+        </template>
+
+        <template v-else-if="event.isPublic && $parent.isLoggedIn">
+          <button v-if="isMember" class="event-btn" @click="leaveEvent($route.params.id)" >Leave</button>
+
+          <button v-else class="event-btn" @click="applyEvent($route.params.id)" >Join</button>
         </template>
       </div>
 
@@ -49,6 +49,14 @@ export default {
     } else {
       this.getEventById(this.$route.params.id);
     }
+
+    if (this.event.members && this.event.members.length > 0) {
+      let uid = localStorage.getItem('uid');
+
+      if (this.event.members.includes(uid)) {
+        this.isMember = true;
+      }
+    }
   },
 
   data() {
@@ -56,6 +64,7 @@ export default {
         event: {},
         isOwner: false,
         isOnEvent: false,
+        isMember: false,
     };
   },
 
