@@ -95,21 +95,6 @@
         v-model="eventIsPublic"
       />
 
-      <template v-if="eventIsPublic" >
-        <label
-          for="members"
-          class="form"
-          >Invite Members:</label
-        >
-
-        <input
-          type="text"
-          class="form"
-          id="members"
-          v-model="eventMembers"
-        />
-      </template>
-
       <input v-if="$route.params.id" type="submit" class="form" value="Update" @click.prevent="updateEvent($route.params.id)" />
       <input v-else type="submit" class="form" value="Create" :disabled="disabled" @click.prevent="createNewEvent" />
     </form>
