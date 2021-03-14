@@ -12,7 +12,13 @@
       <time class="block" ><i class="far fa-calendar"></i> Date: {{eventDate}} </time>
 
       <div class="btns">
-        <template v-if="isOwner">
+        <template v-if="isOwner && $route.params.uid">
+          <button class="event-btn" @click="editEvent($route.params.id, true)" >Edit</button>
+
+          <button class="event-btn" @click="deleteEvent($route.params.id, true)" >Delete</button>
+        </template>
+
+        <template v-else-if="isOwner && !$route.params.uid">
           <button class="event-btn" @click="editEvent($route.params.id)" >Edit</button>
 
           <button class="event-btn" @click="deleteEvent($route.params.id)" >Delete</button>
@@ -37,7 +43,12 @@ export default {
   name: "event-details",
 
   created() {
+    if (this.$route.params.uid) {
+      this.getEventById(this.$route.params.id, true);
+
+    } else {
       this.getEventById(this.$route.params.id);
+    }
   },
 
   data() {

@@ -69,13 +69,25 @@ const routes = [
   
   {
     path: '/events/:id/details',
-    name: 'Details',
+    name: 'DetailsPublic',
+    component: Details
+  },
+  
+  {
+    path: '/events/:uid/:id/details',
+    name: 'DetailsPrivate',
     component: Details
   },
   
   {
     path: '/edit-event/:id',
-    name: 'EditEvent',
+    name: 'EditPublicEvent',
+    component: AddEvent
+  },
+  
+  {
+    path: '/edit-event/:uid/:id',
+    name: 'EditPrivateEvent',
     component: AddEvent
   },
 

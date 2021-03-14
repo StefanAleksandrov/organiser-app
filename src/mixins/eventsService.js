@@ -4,9 +4,20 @@ import { auth } from '../config/firebaseInit.js';
 
 export default {
     methods: {
-        createNewEvent() {
+        getUid () {
+            let uid = localStorage.getItem("uid");
+
+            if (uid) return uid
+            else this.$router.push('/')
+        },
+
+        isAuthenticatedUser() {
             //If user is not logged in, cancel the operation and redirect to Login page;
             if (!localStorage.getItem("uid")) this.$router.push('/login');
+        },
+
+        createNewEvent () {
+            this.isAuthenticatedUser();
 
             let event = {
                 createdAt: new Date(),
@@ -20,7 +31,6 @@ export default {
                 members: this.eventMembers,
                 modifiedAt: new Date(),
             }
-
 
             auth.currentUser.getIdToken(false)
             .then(idToken => {
@@ -42,9 +52,8 @@ export default {
             .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        updateEvent(id) {
-            //If user is not logged in, cancel the operation and redirect to Login page;
-            if (!localStorage.getItem("uid")) this.$router.push('/login');
+        updateEvent (id) {
+            this.isAuthenticatedUser();
 
             let updatedEvent = {
                 name: this.eventName,
@@ -56,14 +65,21 @@ export default {
                 modifiedAt: new Date(),
             }
 
-            fetch(URL + `events/public/${id}.json`)
+            let sendURL = URL + `events/public/${id}.json`;
+
+            if (this.updateEvent.isPublic) {
+                const uid = this.getUid();
+                sendURL = URL + `events/private/${uid}/${id}.json`;
+            }
+
+            fetch(sendURL)
                 .then(resp => resp.json())
                 .then(event => {
                     const sendEvent = Object.assign({}, event, updatedEvent);
 
                     auth.currentUser.getIdToken(false)
                         .then(idToken => {
-                            return fetch(URL + `events/public/${id}.json?auth=${idToken}`, {
+                            return fetch(sendURL + `?auth=${idToken}`, {
                                 method: 'PUT',
                                 body: JSON.stringify(sendEvent),
                             });
@@ -74,18 +90,25 @@ export default {
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        getEventById(id) {
-            fetch(URL + `events/public/${id}.json`)
+        getEventById ( id, isPublic = false ) {
+            let getURL = URL + `events/public/${id}.json`;
+
+            if ( isPublic ) {
+                const uid = this.getUid();
+                getURL = URL + `events/private/${uid}/${id}.json`;
+            }
+
+            fetch(getURL)
                 .then(resp => resp.json())
                 .then(event => {
-                    const userId = localStorage.getItem("uid");
+                    const uid = this.getUid();
                     this.event = event;
-                    this.isOwner = event.creator == userId ? true : false;
+                    this.isOwner = event.creator == uid ? true : false;
                 })
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        getAllPublicEvents() {
+        getAllPublicEvents () {
             fetch(URL + 'events/public.json')
                 .then(resp => resp.json())
                 .then(events => {
@@ -109,12 +132,14 @@ export default {
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        getAllPrivateEvents() {
-            let uid = localStorage.getItem('uid');
+        getAllPrivateEvents () {
+            const uid = this.getUid();
 
             fetch(URL + `events/private/${uid}.json`)
                 .then(resp => resp.json())
                 .then(events => {
+                    console.log(uid);
+
                     for (const key in events) {
                         if (Object.hasOwnProperty.call(events, key)) {
                             events[key].id = key;
@@ -135,11 +160,17 @@ export default {
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
-        editEvent(id) {
-            this.$router.push(`/edit-event/${id}`);
+        editEvent ( id, isPrivate = false ) {
+            if (isPrivate) {
+                const uid = this.getUid();
+                this.$router.push(`/edit-event/${uid}/${id}`);
+
+            } else {
+                this.$router.push(`/edit-event/${id}`);
+            }
         },
 
-        deleteEvent(id) {
+        deleteEvent (id) {
             if (confirm("You are about to delete this event. Are you sure?")) {
                 auth.currentUser.getIdToken(false)
                     .then(idToken => {
@@ -152,11 +183,11 @@ export default {
 
         },
 
-        applyEvent() {
+        applyEvent () {
 
         },
 
-        leaveEvent() {
+        leaveEvent () {
 
         },
     },

@@ -113,8 +113,14 @@ export default {
   name: "add-event",
 
   created() {
+    //edit event
     if (this.$route.params.id) {
-      this.getEventById(this.$route.params.id);
+      if (this.$route.params.uid) {
+        this.getEventById(this.$route.params.id, true);
+
+      } else {
+        this.getEventById(this.$route.params.id);
+      }
     }
   },
 
