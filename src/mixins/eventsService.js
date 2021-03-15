@@ -22,10 +22,8 @@ export default {
         createNewEvent() {
             this.isAuthenticatedUser();
 
-            console.log(this.eventDate);
-
             let event = {
-                createdAt: new Date(),
+                createdAt: this.event.createdAt || new Date(),
                 creator: localStorage.getItem("uid"),
                 name: this.eventName,
                 date: this.eventDate,
@@ -80,35 +78,42 @@ export default {
 
             let sendURL = URL + `events/public/${id}.json`;
 
-            if (!updatedEvent.isPublic) {
-                const uid = this.getUid();
-                sendURL = URL + `events/private/${uid}/${id}.json`;
+            //the event is not switched between public / private
+            if (this.event.isPublic == this.eventIsPublic) {
+                if (!updatedEvent.isPublic) {
+                    const uid = this.getUid();
+                    sendURL = URL + `events/private/${uid}/${id}.json`;
+                }
+    
+                fetch(sendURL)
+                    .then(resp => resp.json())
+                    .then(event => {
+                        const sendEvent = Object.assign({}, event, updatedEvent);
+    
+                        auth.currentUser.getIdToken(false)
+                            .then(idToken => {
+                                return fetch(sendURL + `?auth=${idToken}`, {
+                                    method: 'PUT',
+                                    body: JSON.stringify(sendEvent),
+                                });
+                            })
+                            .then(() => {
+                                if (sendEvent.isPublic) {
+                                    this.$router.push(`/events/${id}/details`);
+    
+                                } else {
+                                    const uid = this.getUid();
+                                    this.$router.push(`/events/${uid}/${id}/details`);
+                                }
+                            })
+                            .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+                    })
+                    .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+
+            } else {
+                this.deleteEvent(id, this.event.isPublic, false);
+                this.createNewEvent();
             }
-
-            fetch(sendURL)
-                .then(resp => resp.json())
-                .then(event => {
-                    const sendEvent = Object.assign({}, event, updatedEvent);
-
-                    auth.currentUser.getIdToken(false)
-                        .then(idToken => {
-                            return fetch(sendURL + `?auth=${idToken}`, {
-                                method: 'PUT',
-                                body: JSON.stringify(sendEvent),
-                            });
-                        })
-                        .then(() => {
-                            if (sendEvent.isPublic) {
-                                this.$router.push(`/events/${id}/details`);
-
-                            } else {
-                                const uid = this.getUid();
-                                this.$router.push(`/events/${uid}/${id}/details`);
-                            }
-                        })
-                        .catch(err => this.$root.$emit("notify", [err.message, "error"]));
-                })
-                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
         getEventById(id, isPublic = false) {
@@ -191,24 +196,24 @@ export default {
             }
         },
 
-        deleteEvent(id, isPublic = false) {
-            if (confirm("You are about to delete this event. Are you sure?")) {
-                this.isAuthenticatedUser();
+        deleteEvent(id, isPublic = false, redirect = true) {
+            this.isAuthenticatedUser();
 
-                let sendURL = URL + `events/public/${id}.json`;
-    
-                if (!isPublic) {
-                    const uid = this.getUid();
-                    sendURL = URL + `events/private/${uid}/${id}.json`;
-                }
+            let sendURL = URL + `events/public/${id}.json`;
 
-                auth.currentUser.getIdToken(false)
-                    .then(idToken => {
-                        return fetch(sendURL + `?auth=${idToken}`, { method: "DELETE" });
-                    })
-                    .then(() => this.$router.push('/'))
-                    .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+            if (!isPublic) {
+                const uid = this.getUid();
+                sendURL = URL + `events/private/${uid}/${id}.json`;
             }
+
+            auth.currentUser.getIdToken(false)
+                .then(idToken => {
+                    return fetch(sendURL + `?auth=${idToken}`, { method: "DELETE" });
+                })
+                .then(() => {
+                    if (redirect) this.$router.push('/');
+                })
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
         },
 
         applyEvent() {

@@ -144,8 +144,14 @@ export default {
         .then(({ user }) => {
           localStorage.setItem('userEmail', user.email);
           localStorage.setItem('uid', user.uid);
+
+          return fetch(URL + `/users/${user.uid}.json`);
+        })
+        .then (resp => resp.json())
+        .then(data => {
+          localStorage.setItem('username', data.username);
           this.$root.$emit('log-change');
-          this.$root.$emit('notify', `Welcome, ${this.userEmail}`);
+          this.$root.$emit('notify', `Welcome, ${data.username}`);
           this.$router.push("/");
         })
         .catch(err => this.$root.$emit("notify", [err.message, "error"]));

@@ -112,7 +112,7 @@ export default {
   name: "add-event",
 
   created() {
-    //edit event
+    //if edit event we load the event data
     if (this.$route.params.id) {
       //private event
       if (this.$route.params.uid) {
@@ -158,6 +158,10 @@ export default {
         }
       }
     },
+
+    eventIsPublic (newV, oldV) {
+      console.log(newV, oldV);
+    }
   },
 
   components: { "vuejs-datepicker": Datepicker },

@@ -13,21 +13,21 @@
 
       <div class="btns">
         <template v-if="isOwner && $route.params.uid">
-          <button class="event-btn" @click="editEvent($route.params.id)" >Edit</button>
+          <button class="event-btn" @click.prevent="editEvent($route.params.id)" >Edit</button>
 
-          <button class="event-btn" @click="deleteEvent($route.params.id)" >Delete</button>
+          <button class="event-btn" @click.prevent="confirmDelete($route.params.id)" >Delete</button>
         </template>
 
         <template v-else-if="isOwner && !$route.params.uid">
-          <button class="event-btn" @click="editEvent($route.params.id, true)" >Edit</button>
+          <button class="event-btn" @click.prevent="editEvent($route.params.id, true)" >Edit</button>
 
-          <button class="event-btn" @click="deleteEvent($route.params.id, true)" >Delete</button>
+          <button class="event-btn" @click.prevent="confirmDelete($route.params.id, true)" >Delete</button>
         </template>
 
         <template v-else-if="event.isPublic && $parent.isLoggedIn">
-          <button v-if="isMember" class="event-btn" @click="leaveEvent($route.params.id)" >Leave</button>
+          <button v-if="isMember" class="event-btn" @click.prevent="leaveEvent($route.params.id)" >Leave</button>
 
-          <button v-else class="event-btn" @click="applyEvent($route.params.id)" >Join</button>
+          <button v-else class="event-btn" @click.prevent="applyEvent($route.params.id)" >Join</button>
         </template>
       </div>
 
@@ -66,6 +66,15 @@ export default {
         isOnEvent: false,
         isMember: false,
     };
+  },
+
+  methods: {
+    confirmDelete(id, isPublic) {
+      if (confirm("You are about to delete this event. Are you sure?")) {
+        this.deleteEvent(id, isPublic);
+      }
+    },
+
   },
 
   computed: {
