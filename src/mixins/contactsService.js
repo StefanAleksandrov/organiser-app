@@ -4,7 +4,7 @@ import { auth } from '../config/firebaseInit.js';
 
 export default {
     methods: {
-        createNewMsg() {
+        createNewMessage() {
             //If user is not logged in, cancel the operation and redirect to Login page;
             if (!localStorage.getItem("uid")) this.$router.push('/login');
 
@@ -25,8 +25,7 @@ export default {
                     });
                 })
                 .then(resp => resp.json())
-                .then((msgId) => {
-                    console.log(msgId);
+                .then(() => {
                     this.$router.push('/');
                     this.$root.$emit('notify', 'Thank you for contacting us!');
                 })
@@ -34,14 +33,14 @@ export default {
 
         },
 
-        getEventById(id) {
+        getMessagegById(id) {
             fetch(URL + `events/${id}.json`)
                 .then(resp => resp.json())
                 .then(event => this.event = event)
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
         },
 
-        getAllEvents() {
+        getAllMessages() {
             fetch(URL + 'events.json')
                 .then(resp => resp.json())
                 .then(events => {

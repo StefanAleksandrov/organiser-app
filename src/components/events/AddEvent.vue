@@ -1,7 +1,8 @@
 <template>
   <div :class="classGlass">
-    <form autocomplete="off" @submit.prevent="createNewEvent">
-      <h1 class="main-heading">Create New Event</h1>
+    <form autocomplete="off" >
+      <h1 v-if="$route.params.id" class="main-heading">Update Event</h1>
+      <h1 v-else class="main-heading">Create New Event</h1>
 
       <label
         for="name"
@@ -9,6 +10,7 @@
         title="Event name should be between 5 and 25 symbols!"
         >Event Name:</label
       >
+
       <input
         type="text"
         :class="['form', nameErr ? 'error error-border' : '']"
@@ -23,6 +25,7 @@
         title="Event name should be between 10 and 100 symbols!"
         >Event Description:</label
       >
+
       <textarea
         :class="['form', descErr ? 'error error-border' : '']"
         id="desc"
@@ -36,6 +39,7 @@
         title="Please provide a valid URL!"
         >Event Image URL:</label
       >
+
       <input
         type="text"
         :class="['form', imgErr ? 'error error-border' : '']"
@@ -53,13 +57,13 @@
         :input-class="['form', dateErr ? 'error error-border' : '']"
         calendar-class="calendar"
         v-model="eventDate"
-        :monday-first="true"
         :typeable="true"
         :open-date="today"
         :disabled-dates="disabledDates"
         placeholder="DD MM YYYY"
         @input="validateEventDate"
       >
+
       </vuejs-datepicker>
 
       <label
@@ -80,16 +84,18 @@
         for="type"
         class="form"
         title="Select 'Open event' to let people join the team."
-        >Private Event:</label
+        >Public Event:</label
       >
+      
       <input
         type="checkbox"
         class="form-checkbox"
         id="type"
-        v-model="eventIsPrivate"
+        v-model="eventIsPublic"
       />
 
-      <input type="submit" class="form" value="Create" :disabled="disabled" />
+      <input v-if="$route.params.id" type="submit" class="form" value="Update" @click.prevent="updateEvent($route.params.id)" />
+      <input v-else type="submit" class="form" value="Create" :disabled="disabled" @click.prevent="createNewEvent" />
     </form>
 
     <div class="bottom"></div>
@@ -105,24 +111,57 @@ import Datepicker from "vuejs-datepicker";
 export default {
   name: "add-event",
 
+  created() {
+    //if edit event we load the event data
+    if (this.$route.params.id) {
+      //private event
+      if (this.$route.params.uid) {
+        this.getEventById(this.$route.params.id, true);
+
+      //public event
+      } else {
+        this.getEventById(this.$route.params.id);
+      }
+    }
+  },
+
   data() {
     return {
       eventName: "",
       eventDesc: "",
       eventImgUrl: "",
       eventDate: "",
-      eventIsPrivate: false,
-      eventCreator: "",
-      eventModerators: [],
-      eventMembers: [],
       eventLocation: '',
+      eventIsPublic: false,
+      eventMembers: [],
       disabled: true,
+
+      event: {},
 
       today: new Date(),
       disabledDates: {
         to: new Date(),
       },
     };
+  },
+
+  watch: {
+    event(newV) {
+      if (newV) {
+        if (Object.keys(newV).length > 0) {
+          this.eventName = newV.name;
+          this.eventDesc = newV.desc;
+          this.eventImgUrl = newV.imageUrl;
+          this.eventDate = newV.date;
+          this.eventLocation = newV.location;
+          this.eventIsPublic = newV.isPublic;
+        }
+      }
+    },
+
+    eventIsPublic (newV, oldV) {
+      console.log(newV, oldV);
+    }
   },
 
   components: { "vuejs-datepicker": Datepicker },
@@ -132,19 +171,14 @@ export default {
 </script>
 
 <style scoped>
-.add-event {
-  margin: 500px auto;
-  width: 50%;
-  border-radius: 15px;
-  transition: all 0.6s ease-out;
-}
-
 .form-checkbox {
   display: block;
   margin: 0 auto;
+  width: 15px;
+  height: 15px;
 }
 
-.add-event form textarea {
+form textarea {
   display: block;
   padding: 20px;
   height: 150px;

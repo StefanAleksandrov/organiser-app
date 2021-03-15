@@ -1,7 +1,17 @@
 <template>
   <div class="home">
-    <h1 class="main-heading">Upcoming Events</h1>
-    <event v-for="event in events" :key="event.id" :event="event"></event>
+    <h1 class="main-heading" v-if="eventsPublic.length > 0 || eventsPrivate.length > 0" >Upcoming Events</h1>
+    <h1 class="main-heading" v-else >No Upcoming Events. You can <router-link to="add-event">add a new event</router-link> and start organising right away!</h1>
+
+    <template v-if="eventsPublic.length > 0">
+      <h2>Public Events:</h2>
+      <event v-for="event in eventsPublic" :key="event.id" :event="event"></event>
+    </template>
+
+    <template v-if="eventsPrivate.length > 0">
+      <h2>Private Events:</h2>
+      <event v-for="event in eventsPrivate" :key="event.id" :event="event"></event>
+    </template>
   </div>
 </template>
 
@@ -13,12 +23,14 @@ export default {
   name: "page-home",
 
   created() {
-    this.getAllEvents();
+    this.getAllPublicEvents();
+    this.getAllPrivateEvents();
   },
 
   data() {
     return {
-      events: [],
+      eventsPublic: [],
+      eventsPrivate: [],
     };
   },
 
@@ -27,7 +39,6 @@ export default {
   },
 
   mixins: [eventsService],
-
 };
 </script>
 

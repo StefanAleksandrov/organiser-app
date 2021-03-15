@@ -7,7 +7,7 @@
 
         <template v-if="logged">
           <li><router-link to="/add-event">Add Event</router-link></li>
-          <li><router-link to="/profile">Profile</router-link></li>
+          <li><router-link to="/profile" style="textTransform: capitalize;">{{$parent.username}}</router-link></li>
           <li><a @click="onLogout" >Logout</a></li>
         </template>
 

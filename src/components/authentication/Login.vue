@@ -72,6 +72,7 @@ export default {
   name: "home",
 
   created() {
+    this.usernameError = false;
     this.repasswordError = false;
   },
 

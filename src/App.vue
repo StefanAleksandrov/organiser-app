@@ -9,7 +9,7 @@
     <main>
       <div class="background"></div>
       <div class="content">
-        <router-view />
+        <router-view :key="$route.path" />
       </div>
     </main>
     <page-footer />
@@ -27,6 +27,7 @@ export default {
     PageFooter,
     Notification,
   },
+
   created () {
     if (localStorage.getItem("uid") !== null) {
       this.isLoggedIn = true;
@@ -35,21 +36,25 @@ export default {
     this.$root.$on("log-change", this.onLogChange);
     this.$root.$on("notify", this.onNotify);
   },
+
   data () {
     return {
       isLoggedIn: false,
+      username: '',
       notificationMessage: "",
       notificationType: "",
     };
   },
+
   methods: {
     onLogChange () {
-      if ( localStorage.getItem("uid") !== null && localStorage.getItem("userEmail") !== null ) {
+      if ( localStorage.getItem("uid") !== null && localStorage.getItem("userEmail") !== null && localStorage.getItem("username") !== null ) {
         this.isLoggedIn = true;
+        this.username = localStorage.getItem("username") || "User";
 
       } else {
         this.isLoggedIn = false;
-        this.$router.push('/');
+        this.$router.go('/');
       }
     },
     onNotify ( args ) {

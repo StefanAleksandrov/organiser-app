@@ -1,10 +1,11 @@
 <template>
   <div class="glass event">
-    <h3>{{event.eventName}}</h3>
+    <h3>{{event.name}}</h3>
     <img :src="event.imageUrl" :alt="event.name"/>
-    <p><i class="far fa-calendar"></i>{{date}}</p>
-    <p><i class="fas fa-map-marker-alt"></i>{{event.eventLocation}}</p>
-    <router-link tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
+    <p><i class="far fa-calendar"></i>{{event.date.split("T")[0]}}</p>
+    <p><i class="fas fa-map-marker-alt"></i>{{event.location}}</p>
+    <router-link v-if="event.isPublic" tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
+    <router-link v-else tag="button" class="event-btn" :to="`/events/${event.creator}/${event.id}/details`">Details</router-link>
   </div>
 </template>
 
@@ -74,25 +75,5 @@ export default {
   height: 200px;
   margin: 0 auto;
   border-radius: 5px;
-}
-
-.event .event-btn {
-  width: 90%;
-  height: 30px;
-  margin: auto;
-  background-color: #aa6f8d;
-  border-radius: 15px;
-  border: none;
-  outline: none;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-}
-
-.event .event-btn:hover {
-  background-color: #553631;
-  color: #ecdde3;
-  cursor: pointer;
 }
 </style>

@@ -1,26 +1,37 @@
 <template>
   <div :class="classGlass">
-    <h1 class="main-heading">{{event.eventName}}</h1>
+    <h1 class="main-heading">{{event.name}}</h1>
 
     <article class="container">
-        <img :src="event.imageUrl" alt="event.eventName">
+        <img :src="event.imageUrl" :alt="event.name">
     </article>
 
     <article class="container">
-        <h3 class="description">{{event.eventDesc}}</h3>
-        <p class="block" >Location: {{event.eventLocation}} </p>
-        <time class="block" > Date: {{event.eventDate}} </time>
+      <h3 class="description">{{event.desc}}</h3>
+      <p class="block" ><i class="fas fa-map-marker-alt"></i> Location: {{event.location}} </p>
+      <time class="block" ><i class="far fa-calendar"></i> Date: {{eventDate}} </time>
+
+      <div class="btns">
+        <template v-if="isOwner && $route.params.uid">
+          <button class="event-btn" @click.prevent="editEvent($route.params.id)" >Edit</button>
+
+          <button class="event-btn" @click.prevent="confirmDelete($route.params.id)" >Delete</button>
+        </template>
+
+        <template v-else-if="isOwner && !$route.params.uid">
+          <button class="event-btn" @click.prevent="editEvent($route.params.id, true)" >Edit</button>
+
+          <button class="event-btn" @click.prevent="confirmDelete($route.params.id, true)" >Delete</button>
+        </template>
+
+        <template v-else-if="event.isPublic && $parent.isLoggedIn">
+          <button v-if="isMember" class="event-btn" @click.prevent="leaveEvent($route.params.id)" >Leave</button>
+
+          <button v-else class="event-btn" @click.prevent="applyEvent($route.params.id)" >Join</button>
+        </template>
+      </div>
+
     </article>
-
-    <div>
-      <button class="event-btn">Apply</button>
-
-      <button class="event-btn">Leave</button>
-
-      <button class="event-btn">Edit</button>
-
-      <button class="event-btn">Delete</button>
-    </div>
   </div>
 </template>
 
@@ -32,13 +43,48 @@ export default {
   name: "event-details",
 
   created() {
-      this.getEventById(this.$route.params.id)
+    if (this.$route.params.uid) {
+      this.getEventById(this.$route.params.id, true);
+
+    } else {
+      this.getEventById(this.$route.params.id);
+    }
+
+    if (this.event.members && this.event.members.length > 0) {
+      let uid = localStorage.getItem('uid');
+
+      if (this.event.members.includes(uid)) {
+        this.isMember = true;
+      }
+    }
   },
 
   data() {
     return {
         event: {},
+        isOwner: false,
+        isOnEvent: false,
+        isMember: false,
     };
+  },
+
+  methods: {
+    confirmDelete(id, isPublic) {
+      if (confirm("You are about to delete this event. Are you sure?")) {
+        this.deleteEvent(id, isPublic);
+      }
+    },
+
+  },
+
+  computed: {
+    eventDate() {
+      if (this.event.date) {
+        return this.event.date.split("T")[0];
+      }
+
+      return "";
+    }
   },
 
   mixins: [eventsService, animations],
@@ -52,6 +98,7 @@ export default {
     padding: 75px 10px;
     text-align: center;
     text-anchor: start;
+    vertical-align: top;
 }
 
 img {
@@ -61,10 +108,22 @@ img {
 
 .description {
     min-height: 100px;
+    margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .block {
     display: block;
     margin-top: 10px;
+}
+
+.container .btns{
+  min-height: 10em;
+}
+
+.container .btns .event-btn {
+  position: static;
+  margin: 25px 5px 0;
+  width: 45%;
 }
 </style>
