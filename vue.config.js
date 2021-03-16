@@ -1,3 +1,4 @@
 module.exports = {
-    publicPath: '/organiser-app/'
+    // publicPath: '/organiser-app/'
+    publicPath: ''
 }
