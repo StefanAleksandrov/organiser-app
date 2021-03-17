@@ -69,6 +69,10 @@ h1.main-heading {
   text-align: center;
 }
 
+.home h2 {
+  margin-left: 50px;
+}
+
 /*GLASS */
 .glass {
   background-color: rgba(0, 0, 0, 0.1);
