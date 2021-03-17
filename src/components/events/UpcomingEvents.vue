@@ -25,6 +25,7 @@ export default {
   created() {
     this.getAllPublicEvents();
     this.getAllPrivateEvents();
+    this.redirect();
   },
 
   data() {
@@ -32,6 +33,17 @@ export default {
       eventsPublic: [],
       eventsPrivate: [],
     };
+  },
+
+  methods: {
+    redirect () {
+      let route = localStorage.getItem('route');
+
+      if (route) {
+        localStorage.removeItem('route');
+        this.$router.push(route);
+      }
+    },
   },
 
   components: {

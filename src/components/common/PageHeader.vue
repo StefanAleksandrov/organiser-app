@@ -8,7 +8,7 @@
         <template v-if="logged">
           <li><router-link to="/add-event">Add Event</router-link></li>
           <li><router-link to="/profile" style="textTransform: capitalize;">{{$parent.username}}</router-link></li>
-          <li><a @click="onLogout" >Logout</a></li>
+          <li><a @click.prevent="onLogout" >Logout</a></li>
         </template>
 
         <template v-else>
@@ -35,6 +35,7 @@ export default {
     onLogout() {
       this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
       localStorage.removeItem('userEmail');
+      localStorage.removeItem('username');
       localStorage.removeItem('uid');
       this.$root.$emit("log-change");
     }

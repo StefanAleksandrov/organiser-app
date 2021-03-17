@@ -29,10 +29,7 @@ export default {
   },
 
   created () {
-    if (localStorage.getItem("uid") !== null) {
-      this.isLoggedIn = true;
-    }
-
+    this.onLogChange();
     this.$root.$on("log-change", this.onLogChange);
     this.$root.$on("notify", this.onNotify);
   },
@@ -57,6 +54,7 @@ export default {
         this.$router.go('/');
       }
     },
+
     onNotify ( args ) {
       if (args instanceof Array) {
         this.notificationMessage = args[0];
