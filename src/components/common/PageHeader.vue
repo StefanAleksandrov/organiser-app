@@ -46,7 +46,7 @@ export default {
 <style scoped>
 div.header {
   width: 100%;
-  background-image: url('../../../public/images/header-img.jpg');
+  background-image: url('../../../public/organizer-app/images/header-img.jpg');
   background-size: cover;
 }
 
