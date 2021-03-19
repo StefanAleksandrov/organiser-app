@@ -29,6 +29,7 @@ export default {
   },
 
   created () {
+    this.redirect();
     this.onLogChange();
     this.$root.$on("log-change", this.onLogChange);
     this.$root.$on("notify", this.onNotify);
@@ -51,7 +52,6 @@ export default {
 
       } else {
         this.isLoggedIn = false;
-        this.$router.go('/');
       }
     },
 
@@ -67,6 +67,15 @@ export default {
         this.notificationMessage = "";
         this.notificationType = "";
       }, 3000);
+    },
+    
+    redirect () {
+      let route = localStorage.getItem('route');
+
+      if (route) {
+        localStorage.removeItem('route');
+        this.$router.push(route);
+      }
     },
   },
 };

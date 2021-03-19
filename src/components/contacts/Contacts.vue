@@ -3,7 +3,7 @@
     <h1 class="main-heading">Get in touch with us!</h1>
 
     <div class="contacts">
-      <form autocomplete="off" @submit.prevent="createNewMsg">
+      <form autocomplete="off" @submit.prevent="createNewMessage">
         <label for="email" class="form">Your Email:</label>
         <input
           type="text"

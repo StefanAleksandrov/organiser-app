@@ -1,7 +1,6 @@
 import { URL } from '../config/config';
 import { auth } from '../config/firebaseInit.js';
 
-
 export default {
     methods: {
         createNewMessage() {
@@ -30,7 +29,6 @@ export default {
                     this.$root.$emit('notify', 'Thank you for contacting us!');
                 })
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]) );
-
         },
 
         getMessagegById(id) {
