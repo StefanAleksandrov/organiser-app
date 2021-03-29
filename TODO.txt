@@ -1,0 +1,13 @@
+global filters:
+https://youtu.be/kpS_nDcI_0g?t=1129
+
+local filters:
+https://youtu.be/kpS_nDcI_0g?t=1390
+
+chaining filters:
+https://youtu.be/kpS_nDcI_0g?t=1766
+
+computed prop vs filters:
+https://youtu.be/kpS_nDcI_0g?t=1570
+https://youtu.be/kpS_nDcI_0g?t=1785
+
