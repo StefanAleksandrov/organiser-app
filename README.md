@@ -1,12 +1,12 @@
 # Organizer web app
  
 ## Organize different events
-## Add an event and manage it (creator is administrator)
+## Add an event (and manage it- ***Not yet implemented***)
 
 ### Public Content
 #### -View all the active events (public and private)
 #### -View any active event details page:
-##### 1) View event general description
+##### 1) View event description
 ##### 2) Button to join that redirects to login page
 
 ### Private Content
@@ -15,17 +15,20 @@
 ##### 1) View event description
 ##### 2) Button to join the event (if not member yet)
 ##### 3) Button to leave the event (if member)
+##### 4) Button to edit the event (if creator)
+##### 5) Button to delete the event (if creator)
 
 #### -Add event:
 ##### 1) Event name
 ##### 2) Event description
 ##### 3) Event avatar
-##### 4) Event type- Open or Closed
+##### 4) Event type- Public or Private
 
 #### -Edit events:
 ##### 1) Rename
-##### 2) Change/add description
-##### 3) Change/add avatar
+##### 2) Change description
+##### 3) Change avatar
+##### 4) Change event type
 
 #
 ### UPCOMMING FUNCTIONALLITY:
