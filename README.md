@@ -4,7 +4,7 @@
 
 ### Public Content
 #### -View all the public events
-#### -View any active event details page:
+#### -View any public event details page:
 ##### 1) View event description
 ##### 2) Button to join that redirects to login page
 
