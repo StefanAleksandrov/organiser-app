@@ -8,9 +8,10 @@
         <input
           type="text"
           id="email"
-          class="form"
+          :class="disabledEmailInput ? 'disabled-form form' : 'form'"
           @input="validate"
           v-model="email"
+          :disabled="disabledEmailInput"
         />
         <label for="topic" class="form">Topic:</label>
         <input
@@ -27,7 +28,13 @@
           @input="validate"
           v-model="message"
         ></textarea>
-        <input type="submit" value="Send" class="form" :disabled="disabled" title="All fields are required!" />
+        <input
+          type="submit"
+          value="Send"
+          class="form"
+          :disabled="disabledSubmit"
+          title="All fields are required!"
+        />
       </form>
 
       <div class="bottom">
@@ -49,7 +56,8 @@ export default {
   created() {
     //Check if logged in
     if (this.$parent.isLoggedIn) {
-      this.email = localStorage.getItem("userEmail") || '';
+      this.email = localStorage.getItem("userEmail") || "";
+      this.disabledEmailInput = true;
     }
   },
 
@@ -58,18 +66,19 @@ export default {
       email: "",
       topic: "",
       message: "",
-      disabled: true,
+      disabledSubmit: true,
+      disabledEmailInput: false,
     };
   },
 
   methods: {
     validate() {
       if (this.email && this.topic && this.message) {
-        this.disabled = false;
+        this.disabledSubmit = false;
       }
     },
   },
-  
+
   mixins: [animations, contactsService],
 };
 </script>
@@ -83,5 +92,11 @@ textarea.form {
   outline: none;
   border-radius: 20px;
   text-align: justify;
+}
+
+.disabled-form {
+  cursor: not-allowed;
+  background-color: rgba(125, 125, 125, 0.5);
+  color: #402a2c;
 }
 </style>
