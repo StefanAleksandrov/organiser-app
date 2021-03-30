@@ -1,7 +1,6 @@
 # Organizer web app
  
 ## Organize different events
-## Add an event (and manage it- ***Not yet implemented***)
 
 ### Public Content
 #### -View all the active events (public and private)
