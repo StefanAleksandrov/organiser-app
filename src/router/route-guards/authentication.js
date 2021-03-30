@@ -8,7 +8,7 @@ export default function (to, from, next) {
     if ( to.path == '/login' || to.path == '/register' || to.path == '/about' ) {
         if (localStorage.uid && localStorage.userEmail) next('/');
         
-    } else if ( to.path == '/add-event' || to.path == '/profile' ) {
+    } else if ( to.path == '/add-event' || to.path == '/profile' || to.path == '/admin' ) {
         if (!localStorage.uid || !localStorage.userEmail) next('/login');
     }
 
