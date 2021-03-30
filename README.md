@@ -3,7 +3,7 @@
 ## Organize different events
 
 ### Public Content
-#### -View all the active events (public and private)
+#### -View all the public events
 #### -View any active event details page:
 ##### 1) View event description
 ##### 2) Button to join that redirects to login page
