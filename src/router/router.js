@@ -12,6 +12,7 @@ import AddEvent from '../components/events/AddEvent'
 import Details from '../components/events/Details'
 import PageNotFound from '../components/common/PageNotFound'
 import PageUnderConstruction from '../components/common/PageUnderConstruction'
+import Admin from '../components/administration/Admin'
 
 //Route guard
 import auth from './route-guards/authentication'
@@ -41,6 +42,12 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
   },
 
   {
