@@ -111,7 +111,8 @@
 </template>
 
 <script>
-import authMixin from "../../mixins/auth";
+import authService from "../../mixins/authService";
+import authValidate from "../../mixins/authValidate";
 import animations from "../../mixins/animations";
 
 export default {
@@ -123,7 +124,7 @@ export default {
 
   methods: {},
 
-  mixins: [authMixin, animations],
+  mixins: [authService, authValidate, animations],
 };
 </script>
 
