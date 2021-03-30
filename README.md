@@ -1,11 +1,10 @@
 # Organizer web app
  
 ## Organize different events
-## Add an event (and manage it- ***Not yet implemented***)
 
 ### Public Content
-#### -View all the active events (public and private)
-#### -View any active event details page:
+#### -View all the public events
+#### -View any public event details page:
 ##### 1) View event description
 ##### 2) Button to join that redirects to login page
 
