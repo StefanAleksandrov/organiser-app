@@ -1,8 +1,8 @@
 <template>
   <div class="glass event">
-    <h3>{{event.name}}</h3>
+    <h3>{{event.name | toUpperCase}}</h3>
     <img :src="event.imageUrl" :alt="event.name"/>
-    <p><i class="far fa-calendar"></i>{{event.date.split("T")[0]}}</p>
+    <p><i class="far fa-calendar"></i>{{event.date | date}}</p>
     <p><i class="fas fa-map-marker-alt"></i>{{event.location}}</p>
     <router-link v-if="event.isPublic" tag="button" class="event-btn" :to="`/events/${event.id}/details`">Details</router-link>
     <router-link v-else tag="button" class="event-btn" :to="`/events/${event.creator}/${event.id}/details`">Details</router-link>

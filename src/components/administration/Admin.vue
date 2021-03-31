@@ -10,8 +10,8 @@
 
       <div v-else >
           <div v-for="message in messages" :key="message.id" :class="message.isRead ? 'read message' : 'message'" @click="toggleRead(message)" >
-              <h1>{{message.topic}}</h1>
-              <p><i class="fas fa-calendar icon"></i> {{message.createdAt.split("T")[0]}} <i class="fas fa-envelope icon"></i><a :href="'mailto:' + message.email">{{message.email}}</a></p>
+              <h1>{{message.topic | toUpperCase}}</h1>
+              <p><i class="fas fa-calendar icon"></i> {{message.createdAt | date}} <i class="fas fa-envelope icon"></i><a :href="'mailto:' + message.email">{{message.email}}</a></p>
               <p>{{message.message}}</p>
           </div>
       </div>
