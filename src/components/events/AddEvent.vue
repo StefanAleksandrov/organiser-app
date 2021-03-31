@@ -158,10 +158,6 @@ export default {
         }
       }
     },
-
-    eventIsPublic (newV, oldV) {
-      console.log(newV, oldV);
-    }
   },
 
   components: { "vuejs-datepicker": Datepicker },

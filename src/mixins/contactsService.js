@@ -53,7 +53,6 @@ export default {
 
         toggleRead(message) {
             message.isRead = !message.isRead;
-            console.log(message);
     
             auth.currentUser.getIdToken(false)
                 .then(idToken => {
