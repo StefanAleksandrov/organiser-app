@@ -98,11 +98,11 @@ export default {
                             })
                             .then(() => {
                                 if (sendEvent.isPublic) {
-                                    this.$router.push(`/events/${id}/details`);
+                                    this.$router.push(`/events/details/${id}`);
 
                                 } else {
                                     const uid = this.getUid();
-                                    this.$router.push(`/events/${uid}/${id}/details`);
+                                    this.$router.push(`/events/details/${uid}/${id}`);
                                 }
                             })
                             .catch(err => this.$root.$emit("notify", [err.message, "error"]));
