@@ -6,9 +6,9 @@
       <label
         for="email"
         class="form"
-        title="Please enter a valid email address!"
-        >Email:</label
-      >
+        title="Please enter a valid email address!" >
+          Email:
+      </label>
 
       <article class="container">
         <input
@@ -17,8 +17,8 @@
           :class="['form', { 'error error-border': emailErrorClass }]"
           v-model="userEmail"
           @change="validateEmail"
-          @input="markValid('email')"
-        />
+          @input="markValid('email')" />
+
         <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass }]" ></i>
       </article>
 
@@ -29,9 +29,9 @@
       <label
         for="username"
         class="form"
-        title="Please enter a username!"
-        >Username:</label
-      >
+        title="Please enter a username!">
+          Username:
+      </label>
 
       <article class="container">
         <input
@@ -40,8 +40,8 @@
           :class="['form', { 'error error-border': usernameErrorClass }]"
           v-model="username"
           @change="validateUsername"
-          @input="markValid('username')"
-        />
+          @input="markValid('username')"/>
+
         <i :class="['fas fa-hashtag fa-lg first', { 'error': usernameErrorClass }]" ></i>
       </article>
 
@@ -52,9 +52,9 @@
       <label
         for="password"
         class="form"
-        title="The password should be 6 digits or more!"
-        >Password:</label
-      >
+        title="The password should be 6 digits or more!">
+          Password:
+      </label>
 
       <article class="container">
         <input
@@ -63,8 +63,8 @@
           :class="['form', { 'error error-border': passwordErrorClass }]"
           v-model="userPassword"
           @change="validatePassword"
-          @input="markValid('password')"
-        />
+          @input="markValid('password')"/>
+
         <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass } ]"></i>
       </article>
 
@@ -75,9 +75,9 @@
       <label
         for="re-password"
         class="form"
-        title="The entered passwords should match!"
-        >Repeat Password:</label
-      >
+        title="The entered passwords should match!">
+          Repeat Password:
+      </label>
 
       <article class="container">
         <input
@@ -86,8 +86,8 @@
           :class="['form', { 'error error-border': repasswordErrorClass }]"
           v-model="userRepassword"
           @change="validateRepassword"
-          @input="markValid('re-password')"
-        />
+          @input="markValid('re-password')"/>
+
         <i :class="['fas fa-lock fa-lg third', { 'error': repasswordErrorClass } ]"></i>
       </article>
 
@@ -100,8 +100,7 @@
         value="Register"
         class="form"
         :disabled="combinedError"
-        title="All fields are required!"
-      />
+        title="All fields are required!"/>
     </form>
 
     <div class="bottom">

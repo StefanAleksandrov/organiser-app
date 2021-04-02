@@ -3,8 +3,8 @@
       <div v-if="!isAdmin">
           <form @submit.prevent="authorizeAdmin">
               <label for="admin-pass" class="input text-center" >Provide admin password:</label>
-              <input id="admin-pass" type="password" v-model="adminPass" class="input" >
-              <input type="submit" class="input" >
+              <input id="admin-pass" type="password" v-model="adminPass" class="input" />
+              <input type="submit" class="input" />
           </form>
       </div>
 

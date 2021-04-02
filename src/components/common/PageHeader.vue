@@ -43,20 +43,20 @@ export default {
 </script>
 
 <style scoped>
-div.header {
+.header {
   width: 100%;
   background-image: url('../../../public/images/header-img.jpg');
   background-size: cover;
 }
 
-div.header div.container {
+.header .container {
   height: 425px;
   width: 75%;
   padding: 25px 50px;
   margin: 0 auto;
 }
 
-div.header div.container > a {
+.header .container > a {
   font-size: 24px;
   font-weight: 700;
   text-decoration: none;
@@ -64,32 +64,31 @@ div.header div.container > a {
   font-family: monospace;
 }
 
-div.header div.container > a > span {
+.header .container > a > span {
   font-size: 35px;
   font-family: sans-serif;
 }
 
-div.header ul {
+.header ul {
   float: right;
   text-align: center;
 }
 
-div.header ul li {
+.header ul li {
   display: inline-block;
 }
 
-div.header ul li a:last-of-type {
+.header ul li a:last-of-type {
   border: none;
   margin-right: 10px;
 }
 
-div.header ul li a:hover {
-  /* background-color: rgba(200, 200, 200, 0.5); */
+.header ul li a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
-div.header ul li a {
+.header ul li a {
   text-align: center;
   text-decoration: none;
   color: #ecdde3;

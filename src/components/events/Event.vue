@@ -4,6 +4,7 @@
     <img :src="event.imageUrl" :alt="event.name"/>
     <p><i class="far fa-calendar"></i>{{event.date | date}}</p>
     <p><i class="fas fa-map-marker-alt"></i>{{event.location}}</p>
+    
     <router-link v-if="event.isPublic" tag="button" class="event-btn" :to="`/events/details/${event.id}`">Details</router-link>
     <router-link v-else tag="button" class="event-btn" :to="`/events/details/${event.creator}/${event.id}`">Details</router-link>
   </div>

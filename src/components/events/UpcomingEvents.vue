@@ -5,12 +5,12 @@
 
     <template v-if="eventsPublic.length > 0">
       <h2>Public Events:</h2>
-      <event v-for="event in eventsPublic" :key="event.id" :event="event"></event>
+      <event v-for="event in eventsPublic" :key="event.id" :event="event" />
     </template>
 
     <template v-if="eventsPrivate.length > 0">
       <h2>Private Events:</h2>
-      <event v-for="event in eventsPrivate" :key="event.id" :event="event"></event>
+      <event v-for="event in eventsPrivate" :key="event.id" :event="event" />
     </template>
   </div>
 </template>

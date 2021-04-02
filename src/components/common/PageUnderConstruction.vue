@@ -1,7 +1,6 @@
 <template>
   <div :class="classGlass">
       <h1>Page Under Construction</h1>
-      <!-- <i class="fa fa-code fa-10x"></i> -->
       <i class="fas fa-tools fa-10x"></i>
       <p>The page you are looking for is not published yet.</p>
       <div class="bottom">Please try again later!</div>

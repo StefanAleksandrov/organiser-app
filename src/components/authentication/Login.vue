@@ -15,8 +15,7 @@
             v-model="userEmail"
             :class="['form', { 'error error-border': emailErrorClass }]"
             @change="validateEmail"
-            @input="markValid('email')"
-          />
+            @input="markValid('email')"/>
 
           <i :class="['far fa-envelope fa-lg first', { 'error': emailErrorClass } ]"></i>
         </article>
@@ -36,8 +35,7 @@
             :class="['form', { 'error error-border': passwordErrorClass }]"
             v-model="userPassword"
             @change="validatePassword"
-            @input="markValid('password')"
-          />
+            @input="markValid('password')"/>
 
           <i :class="['fas fa-lock fa-lg second', { 'error': passwordErrorClass }]"></i>
         </article>
@@ -51,8 +49,7 @@
           value="Login"
           class="form"
           :disabled="combinedError"
-          title="All fields are required!"
-        />
+          title="All fields are required!"/>
       </form>
 
       <div class="bottom">

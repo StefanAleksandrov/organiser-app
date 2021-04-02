@@ -11,30 +11,29 @@
           :class="disabledEmailInput ? 'disabled-form form' : 'form'"
           @input="validate"
           v-model="email"
-          :disabled="disabledEmailInput"
-        />
+          :disabled="disabledEmailInput"/>
+
         <label for="topic" class="form">Topic:</label>
         <input
           type="text"
           id="topic"
           class="form"
           @input="validate"
-          v-model="topic"
-        />
+          v-model="topic"/>
+
         <label for="message" class="form">Message:</label>
         <textarea
           id="message"
           class="form"
           @input="validate"
-          v-model="message"
-        ></textarea>
+          v-model="message"></textarea>
+
         <input
           type="submit"
           value="Send"
           class="form"
           :disabled="disabledSubmit"
-          title="All fields are required!"
-        />
+          title="All fields are required!"/>
       </form>
 
       <div class="bottom">
