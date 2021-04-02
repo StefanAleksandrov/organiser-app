@@ -22,11 +22,7 @@ import PageFooter from "./components/common/PageFooter";
 import Notification from "./components/common/Notification";
 
 export default {
-  components: {
-    PageHeader,
-    PageFooter,
-    Notification,
-  },
+  name: "App",
 
   created () {
     this.redirect();
@@ -78,6 +74,12 @@ export default {
         this.$router.push(route);
       }
     },
+  },
+
+  components: {
+    PageHeader,
+    PageFooter,
+    Notification,
   },
 };
 </script>

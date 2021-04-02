@@ -22,7 +22,7 @@
 import contactsService from '../../mixins/contactsService';
 
 export default {
-  name: "admin",
+  name: "Admin",
   data() {
     return {
         messages: [],

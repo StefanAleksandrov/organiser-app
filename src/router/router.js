@@ -65,13 +65,13 @@ const routes = [
 
   {
     path: '/questions-and-answers',
-    name: 'Q&A',
+    name: 'Q&AUnderConstruction',
     component: PageUnderConstruction,
   },
 
   {
     path: '/profile',
-    name: 'Profile',
+    name: 'ProfileUnderConstruction',
     component: PageUnderConstruction,
   },
 
@@ -79,6 +79,12 @@ const routes = [
     path: '/add-event',
     name: 'AddEvent',
     component: AddEvent
+  },
+
+  {
+    path: '/events/organise/:id',
+    name: 'OrganiseUnderConstruction',
+    component: PageUnderConstruction
   },
 
   //If the event is private there will be user id in the route

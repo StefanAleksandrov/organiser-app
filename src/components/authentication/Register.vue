@@ -116,7 +116,7 @@ import authValidate from "../../mixins/authValidate";
 import animations from "../../mixins/animations";
 
 export default {
-  name: "home",
+  name: "Register",
 
   data() {
     return {};

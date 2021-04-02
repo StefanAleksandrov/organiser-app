@@ -20,7 +20,7 @@ import Event from "../events/Event";
 import eventsService from "../../mixins/eventsService";
 
 export default {
-  name: "page-home",
+  name: "Home",
 
   created() {
     this.getAllPublicEvents();

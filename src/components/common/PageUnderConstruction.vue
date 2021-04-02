@@ -12,7 +12,7 @@
 import animations from "../../mixins/animations";
 
 export default {
-  name: "home",
+  name: "PageUnderConstruction",
 
   data() {
     return {};

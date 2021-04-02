@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "event",
+  name: "Event",
 
   props: ['event'],
 

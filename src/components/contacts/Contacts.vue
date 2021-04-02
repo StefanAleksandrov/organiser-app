@@ -51,7 +51,7 @@ import animations from "../../mixins/animations";
 import contactsService from "../../mixins/contactsService";
 
 export default {
-  name: "home",
+  name: "Contacts",
 
   created() {
     //Check if logged in

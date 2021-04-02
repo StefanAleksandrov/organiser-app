@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "page-footer",
+  name: "PageFooter",
   
   data() {
     return {};
