@@ -1,58 +1,56 @@
 <template>
   <div :class="classGlass">
-    <form autocomplete="off" >
+    <form autocomplete="off">
       <h1 v-if="$route.params.id" class="main-heading">Update Event</h1>
       <h1 v-else class="main-heading">Create New Event</h1>
 
       <label
         for="name"
         :class="['form', nameErr ? 'error' : '']"
-        title="Event name should be between 5 and 25 symbols!"
-        >Event Name:</label
-      >
+        title="Event name should be between 5 and 25 symbols!">
+          Event Name:
+      </label>
 
       <input
         type="text"
         :class="['form', nameErr ? 'error error-border' : '']"
         id="name"
         v-model="eventName"
-        @change="validateEventName"
-      />
+        @change="validateEventName"/>
 
       <label
         for="desc"
         :class="['form', descErr ? 'error' : '']"
-        title="Event name should be between 10 and 100 symbols!"
-        >Event Description:</label
-      >
+        title="Event name should be between 10 and 100 symbols!">
+          Event Description:
+      </label>
 
       <textarea
         :class="['form', descErr ? 'error error-border' : '']"
         id="desc"
         v-model="eventDesc"
-        @change="validateEventDesc"
-      ></textarea>
+        @change="validateEventDesc"></textarea>
 
       <label
         for="imageUrl"
         :class="['form', imgErr ? 'error' : '']"
-        title="Please provide a valid URL!"
-        >Event Image URL:</label
-      >
+        title="Please provide a valid URL!">
+          Event Image URL:
+      </label>
 
       <input
         type="text"
         :class="['form', imgErr ? 'error error-border' : '']"
         id="imageUrl"
         v-model="eventImgUrl"
-        @change="validateEventImgUrl"
-      />
+        @change="validateEventImgUrl"/>
 
       <label
         :class="['form', dateErr ? 'error' : '']"
-        title="Please pick a date!"
-        >Pick a Date</label
-      >
+        title="Please pick a date!">
+          Pick a Date
+      </label>
+
       <vuejs-datepicker
         :input-class="['form', dateErr ? 'error error-border' : '']"
         calendar-class="calendar"
@@ -61,43 +59,51 @@
         :open-date="today"
         :disabled-dates="disabledDates"
         placeholder="DD MM YYYY"
-        @input="validateEventDate"
-      >
-
+        @input="validateEventDate">
       </vuejs-datepicker>
 
       <label
         for="location"
         :class="['form', locationErr ? 'error' : '']"
-        title="Location should be between 5 and 50 symbols!"
-        >Event Location:</label
-      >
+        title="Location should be between 5 and 50 symbols!">
+          Event Location:
+      </label>
+
       <input
         type="text"
         :class="['form', locationErr ? 'error error-border' : '']"
         id="location"
         v-model="eventLocation"
-        @change="validateEventLocation"
-      />
+        @change="validateEventLocation"/>
 
       <label
         for="type"
         class="form"
-        title="Select 'Open event' to let people join the team."
-        >Public Event:</label
-      >
-      
+        title="Select 'Open event' to let people join the team.">
+          Public Event:
+      </label>
+
       <input
         type="checkbox"
         class="form-checkbox"
         id="type"
-        v-model="eventIsPublic"
-      />
+        v-model="eventIsPublic"/>
 
-      <input v-if="$route.params.id" type="submit" class="form" value="Update" @click.prevent="updateEvent($route.params.id)" />
-      <input v-else type="submit" class="form" value="Create" :disabled="disabled" @click.prevent="createNewEvent" />
+      <input
+        v-if="$route.params.id"
+        type="submit"
+        class="form"
+        value="Update"
+        @click.prevent="updateEvent($route.params.id)"/>
+
+      <input
+        v-else
+        type="submit"
+        class="form"
+        value="Create"
+        :disabled="disabled"
+        @click.prevent="createNewEvent"/>
     </form>
-
     <div class="bottom"></div>
   </div>
 </template>
@@ -109,18 +115,30 @@ import animations from "../../mixins/animations";
 import Datepicker from "vuejs-datepicker";
 
 export default {
-  name: "add-event",
+  name: "AddEvent",
 
   created() {
     //if edit event we load the event data
     if (this.$route.params.id) {
       //private event
       if (this.$route.params.uid) {
-        this.getEventById(this.$route.params.id, true);
+        this.getEventById(this.$route.params.id, true)
+          .then((event) => {
+            const uid = localStorage.getItem("uid");
+            this.event = event;
+            this.isOwner = event.creator == uid ? true : false;
+          })
+          .catch((err) => this.$root.$emit("notify", [err.message, "error"]));
 
-      //public event
+        //public event
       } else {
-        this.getEventById(this.$route.params.id);
+        this.getEventById(this.$route.params.id)
+          .then((event) => {
+            const uid = localStorage.getItem("uid");
+            this.event = event;
+            this.isOwner = event.creator == uid ? true : false;
+          })
+          .catch((err) => this.$root.$emit("notify", [err.message, "error"]));
       }
     }
   },
@@ -131,7 +149,7 @@ export default {
       eventDesc: "",
       eventImgUrl: "",
       eventDate: "",
-      eventLocation: '',
+      eventLocation: "",
       eventIsPublic: false,
       eventMembers: [],
       disabled: true,

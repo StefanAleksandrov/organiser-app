@@ -84,12 +84,12 @@ export default {
                     const uid = this.getUid();
                     sendURL = URL + `events/private/${uid}/${id}.json`;
                 }
-    
+
                 fetch(sendURL)
                     .then(resp => resp.json())
                     .then(event => {
                         const sendEvent = Object.assign({}, event, updatedEvent);
-    
+
                         auth.currentUser.getIdToken(false)
                             .then(idToken => {
                                 return fetch(sendURL + `?auth=${idToken}`, {
@@ -100,7 +100,7 @@ export default {
                             .then(() => {
                                 if (sendEvent.isPublic) {
                                     this.$router.push(`/events/${id}/details`);
-    
+
                                 } else {
                                     const uid = this.getUid();
                                     this.$router.push(`/events/${uid}/${id}/details`);
@@ -124,14 +124,8 @@ export default {
                 getURL = URL + `events/private/${uid}/${id}.json`;
             }
 
-            fetch(getURL)
-                .then(resp => resp.json())
-                .then(event => {
-                    const uid = localStorage.getItem("uid");
-                    this.event = event;
-                    this.isOwner = event.creator == uid ? true : false;
-                })
-                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+            return fetch(getURL)
+                .then(resp => resp.json());
         },
 
         getAllPublicEvents() {
@@ -217,21 +211,84 @@ export default {
         },
 
         applyEvent() {
+            let joinURL = URL;
+            const uid = localStorage.getItem('uid');
+
+            //Guard clause to exit if there is no uid record
+            if (!uid) return this.$router.push('/login');
+
+            if (this.$route.params.uid) {
+                joinURL += `events/private/${uid}/${this.$route.params.id}.json`;
+
+            } else {
+                joinURL += `events/public/${this.$route.params.id}.json`;
+            }
+
+            fetch(joinURL)
+                .then(resp => resp.json())
+                .then(event => {
+                    this.event = event;
+
+                    if (this.event.members) {
+                        this.event.members.push(uid);
+
+                    } else {
+                        this.event.members = [uid];
+                    }
+
+                    return auth.currentUser.getIdToken(false);
+                })
+                .then(idToken => {
+                    return fetch(joinURL + `?auth=${idToken}`, {
+                        method: "PUT",
+                        body: JSON.stringify(this.event)
+                    })
+                })
+                .then(() => {
+                    this.$root.$emit('notify', 'You joined the Event!');
+                    this.isMember = true
+                })
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+
+        },
+
+        leaveEvent() {
+            let leaveURL = URL;
             const uid = localStorage.getItem('uid');
 
             //Guard clause to exit if there is no uid record
             if (!uid) return this.$router.push('/');
 
-            if (this.event.members) {
-                this.event.members.push(uid);
-                return;
+            if (this.$route.params.uid) {
+                leaveURL += `events/private/${uid}/${this.$route.params.id}.json`;
+
+            } else {
+                leaveURL += `events/public/${this.$route.params.id}.json`;
             }
 
-            this.event.members = [uid];
+            fetch(leaveURL)
+                .then(resp => resp.json())
+                .then(event => {
+                    this.event = event;
 
-        },
+                    if (this.event.members) {
+                        let index = this.event.members.indexOf(uid);
+                        this.event.members.splice(index, 1);
+                    }
 
-        leaveEvent() {
+                    return auth.currentUser.getIdToken(false);
+                })
+                .then(idToken => {
+                    return fetch(leaveURL + `?auth=${idToken}`, {
+                        method: "PUT",
+                        body: JSON.stringify(this.event)
+                    })
+                })
+                .then(() => {
+                    this.$root.$emit('notify', 'You left the Event!');
+                    this.isMember = false
+                })
+                .catch(err => this.$root.$emit("notify", [err.message, "error"]));
 
         },
     },
