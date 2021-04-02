@@ -27,6 +27,10 @@ export default {
     this.getAllPrivateEvents();
   },
 
+  mounted() {
+    document.documentElement.scrollTop = 0;
+  },
+
   data() {
     return {
       eventsPublic: [],
