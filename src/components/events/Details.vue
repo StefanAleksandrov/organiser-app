@@ -88,7 +88,12 @@ export default {
           const uid = localStorage.getItem("uid");
           this.event = event;
           this.isOwner = event.creator == uid ? true : false;
-          this.isMember = event.members?.includes(uid);
+
+          if (event.members && this.event.members.length > 0) {
+            if (event.members.includes(uid)) {
+              this.isMember = true;
+            }
+          }
         })
         .catch((err) => this.$root.$emit("notify", [err.message, "error"]));
 
@@ -98,7 +103,12 @@ export default {
           const uid = localStorage.getItem("uid");
           this.event = event;
           this.isOwner = event.creator == uid ? true : false;
-          this.isMember = event.members?.includes(uid);
+
+          if (event.members && this.event.members.length > 0) {
+            if (event.members.includes(uid)) {
+              this.isMember = true;
+            }
+          }
         })
         .catch((err) => this.$root.$emit("notify", [err.message, "error"]));
     }

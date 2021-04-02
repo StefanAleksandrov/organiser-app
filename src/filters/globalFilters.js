@@ -6,7 +6,8 @@ export default {
     },
 
     date(value) {
-        if (value.includes("T")) return value.split("T")[0];
+        if (!value) return;
+        if (value && value.includes("T")) return value.split("T")[0];
 
         return value;
     }
