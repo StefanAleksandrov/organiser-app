@@ -5,12 +5,13 @@ export default {
     methods: {
         createNewMessage() {
             //If user is not logged in, cancel the operation and redirect to Login page;
-            if (!localStorage.getItem("uid")) this.$router.push('/login');
+            const uid = localStorage.getItem("uid");
+            if (!uid) return this.$router.push('/login');
 
             let msg = {
                 isRead: false,
                 createdAt: new Date(),
-                creator: localStorage.getItem("uid"),
+                creator: uid,
                 email: this.email,
                 topic: this.topic,
                 message: this.message,

@@ -217,6 +217,17 @@ export default {
         },
 
         applyEvent() {
+            const uid = localStorage.getItem('uid');
+
+            //Guard clause to exit if there is no uid record
+            if (!uid) return this.$router.push('/');
+
+            if (this.event.members) {
+                this.event.members.push(uid);
+                return;
+            }
+
+            this.event.members = [uid];
 
         },
 
