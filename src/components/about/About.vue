@@ -74,14 +74,13 @@ export default {
 }
 
 .start h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-bottom: 50px;
 }
 
 .start h2 span {
   display: block;
-  font-size: 1.5rem;
   position: relative;
   top: 10px;
 }
