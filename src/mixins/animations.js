@@ -10,6 +10,6 @@ export default {
         
         setTimeout(function () {
         this.classGlass += ' animate';
-        }.bind(this), 1)
+        }.bind(this), 1);
     }
 }
