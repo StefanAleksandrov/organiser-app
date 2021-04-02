@@ -42,7 +42,7 @@ export default {
                   });
                 })
                 .then(resp => resp.json())
-                .then(data => console.log(data))
+                // .then(data => console.log(data))
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));
 
               localStorage.setItem('userEmail', user.email);
@@ -72,6 +72,19 @@ export default {
           this.$router.push("/");
         })
         .catch(err => this.$root.$emit("notify", [err.message, "error"]));
+    },
+
+    onLogoutClick() {
+      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('username');
+      localStorage.removeItem('uid');
+      auth.signOut();
+      this.$root.$emit("log-change");
+
+      if (this.$route.path !== '/') {
+        this.$router.push('/');
+      }
     }
-  },
+  }
 }

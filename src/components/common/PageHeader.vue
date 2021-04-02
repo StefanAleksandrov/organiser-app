@@ -7,7 +7,7 @@
           <li><router-link to="/contacts">Contacts</router-link></li>
           <li><router-link to="/add-event">Add Event</router-link></li>
           <li><router-link to="/profile" style="textTransform: capitalize;">{{$parent.username}}</router-link></li>
-          <li><a @click.prevent="onLogout" >Logout</a></li>
+          <li><a @click.prevent="onLogoutClick()" >Logout</a></li>
         </template>
 
         <template v-else>
@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import authService from '../../mixins/authService';
+
 export default {
   name: "PageHeader",
+
+  mixins: [authService],
 
   props: {
     logged: {
@@ -33,17 +37,6 @@ export default {
 
   data() {
     return {};
-  },
-
-  methods: {
-    onLogout() {
-      this.$root.$emit("notify", `Goodbye, ${localStorage.getItem('userEmail')}`);
-      localStorage.removeItem('userEmail');
-      localStorage.removeItem('username');
-      localStorage.removeItem('uid');
-      this.$root.$emit("log-change");
-      this.$route.push('/');
-    }
   },
 };
 </script>
