@@ -24,7 +24,12 @@
 export default {
   name: "PageHeader",
 
-  props: ["logged"],
+  props: {
+    logged: {
+      type: Boolean,
+      default: false,
+    }
+  },
 
   data() {
     return {};
@@ -37,6 +42,7 @@ export default {
       localStorage.removeItem('username');
       localStorage.removeItem('uid');
       this.$root.$emit("log-change");
+      this.$route.push('/');
     }
   },
 };

@@ -59,7 +59,6 @@ export default {
       } else {
         setTimeout(this.typing, 150);
       }
-
     },
   },
 

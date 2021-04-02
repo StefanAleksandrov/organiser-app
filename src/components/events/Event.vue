@@ -2,7 +2,7 @@
   <div class="glass event">
     <h3>{{event.name | toUpperCase}}</h3>
     <img :src="event.imageUrl" :alt="event.name"/>
-    <p><i class="far fa-calendar"></i>{{event.date | date}}</p>
+    <p><i class="far fa-calendar"></i>{{date}}</p>
     <p><i class="fas fa-map-marker-alt"></i>{{event.location}}</p>
     
     <router-link v-if="event.isPublic" tag="button" class="event-btn" :to="`/events/details/${event.id}`">Details</router-link>
@@ -14,7 +14,13 @@
 export default {
   name: "Event",
 
-  props: ['event'],
+  props: {
+    event: {
+      type: Object,
+      required: true,
+      default: new Object
+    }
+  },
 
   data() {
     return {
@@ -37,7 +43,9 @@ export default {
 
   computed: {
     date: function () {
-      let initialDate = this.event.eventDate.split("T")[0];
+      if (!this.event.date) return;
+
+      let initialDate = this.event.date.split("T")[0];
       let [year, month, day] = initialDate.split("-");
 
       return day + this.months[month] + year;

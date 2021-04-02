@@ -51,13 +51,12 @@ export default {
                 })
                 .then(resp => resp.json())
                 .then(eventId => {
-                    console.log(eventId);
                     if (event.isPublic) {
-                        this.$router.push(`/events/${eventId.name}/details`);
+                        this.$router.push(`/events/details/${eventId.name}`);
 
                     } else {
                         const uid = this.getUid();
-                        this.$router.push(`/events/${uid}/${eventId.name}/details`);
+                        this.$router.push(`/events/details/${uid}/${eventId.name}`);
                     }
                 })
                 .catch(err => this.$root.$emit("notify", [err.message, "error"]));

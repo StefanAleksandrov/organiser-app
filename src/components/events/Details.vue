@@ -12,7 +12,7 @@
         <i class="fas fa-map-marker-alt"></i> Location: {{ event.location }}
       </p>
       <time class="block">
-        <i class="far fa-calendar"></i> Date: {{ eventDate }}
+        <i class="far fa-calendar"></i> Date: {{ event.date | date }}
       </time>
 
       <div class="btns">
@@ -126,16 +126,6 @@ export default {
       if (confirm("You are about to delete this event. Are you sure?")) {
         this.deleteEvent(id, isPublic);
       }
-    },
-  },
-
-  computed: {
-    eventDate() {
-      if (this.event.date) {
-        return this.event.date.split("T")[0];
-      }
-
-      return "";
     },
   },
 

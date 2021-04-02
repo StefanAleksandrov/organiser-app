@@ -14,6 +14,7 @@
                 required: true,
                 default: "Hello from message component",
             },
+            
             type: {
                 type: String,
                 default: "",

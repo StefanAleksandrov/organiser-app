@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <page-header :logged="isLoggedIn" />
+    
     <notification
       v-if="notificationMessage"
       :message="notificationMessage"
-      :type="notificationType"
-    ></notification>
+      :type="notificationType">
+    </notification>
+
     <main>
       <div class="background"></div>
       <div class="content">
         <router-view :key="$route.path" />
       </div>
     </main>
+
     <page-footer />
   </div>
 </template>
