@@ -4,11 +4,10 @@ export default function (to, from, next) {
         else if (localStorage.userEmail) localStorage.removeItem('userEmail')
     }
 
-
     if ( to.path == '/login' || to.path == '/register' || to.path == '/about' ) {
         if (localStorage.uid && localStorage.userEmail) next('/');
         
-    } else if ( to.path == '/add-event' || to.path == '/profile' || to.path == '/admin' ) {
+    } else if ( to.path == '/add-event' || to.path == '/profile' || to.path == '/contacts' ) {
         if (!localStorage.uid || !localStorage.userEmail) next('/login');
     }
 

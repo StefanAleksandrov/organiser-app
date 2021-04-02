@@ -12,19 +12,22 @@
       <time class="block" ><i class="far fa-calendar"></i> Date: {{eventDate}} </time>
 
       <div class="btns">
+        <!-- Edit and delete private event -->
         <template v-if="isOwner && $route.params.uid">
           <button class="event-btn" @click.prevent="editEvent($route.params.id)" >Edit</button>
 
           <button class="event-btn" @click.prevent="confirmDelete($route.params.id)" >Delete</button>
         </template>
 
+        <!-- Edit and delete public event -->
         <template v-else-if="isOwner && !$route.params.uid">
           <button class="event-btn" @click.prevent="editEvent($route.params.id, true)" >Edit</button>
 
           <button class="event-btn" @click.prevent="confirmDelete($route.params.id, true)" >Delete</button>
         </template>
 
-        <template v-else-if="event.isPublic && $parent.isLoggedIn">
+        <!-- Join and leave event -->
+        <template v-else-if="event.isPublic">
           <button v-if="isMember" class="event-btn" @click.prevent="leaveEvent($route.params.id)" >Leave</button>
 
           <button v-else class="event-btn" @click.prevent="applyEvent($route.params.id)" >Join</button>

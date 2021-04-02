@@ -3,9 +3,8 @@
     <div class="container">
       <router-link to="/"><span>O</span>RGANISER APP</router-link>
       <ul>
-        <li><router-link to="/contacts">Contacts</router-link></li>
-
         <template v-if="logged">
+          <li><router-link to="/contacts">Contacts</router-link></li>
           <li><router-link to="/add-event">Add Event</router-link></li>
           <li><router-link to="/profile" style="textTransform: capitalize;">{{$parent.username}}</router-link></li>
           <li><a @click.prevent="onLogout" >Logout</a></li>

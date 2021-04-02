@@ -59,7 +59,8 @@ export default {
       if (args instanceof Array) {
         this.notificationMessage = args[0];
         this.notificationType = args[1];
-      } else {
+        
+      } else if (typeof args == 'string') {
         this.notificationMessage = args;
       }
 
