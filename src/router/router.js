@@ -47,7 +47,14 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: Admin
+    component: Admin,
+    beforeEnter: function (to, from, next) {
+      if (!localStorage.uid || !localStorage.userEmail) {
+        next('/');
+      }
+
+      next();
+    }
   },
 
   {
@@ -73,33 +80,23 @@ const routes = [
     name: 'AddEvent',
     component: AddEvent
   },
-  
+
+  //If the event is private there will be user id in the route
   {
-    path: '/events/:id/details',
-    name: 'DetailsPublic',
+    path: '/events/details/:uid?/:id',
+    name: 'Details',
     component: Details
   },
-  
+
+  //If the event is private there will be user id in the route
   {
-    path: '/events/:uid/:id/details',
-    name: 'DetailsPrivate',
-    component: Details
-  },
-  
-  {
-    path: '/edit-event/:id',
-    name: 'EditPublicEvent',
-    component: AddEvent
-  },
-  
-  {
-    path: '/edit-event/:uid/:id',
+    path: '/edit-event/:uid?/:id',
     name: 'EditPrivateEvent',
     component: AddEvent
   },
 
   {
-    path: '/*',
+    path: '*',
     name: 'PageNotFound',
     component: PageNotFound
   }
