@@ -29,6 +29,8 @@ export default {
 
   mounted() {
     document.documentElement.scrollTop = 0;
+
+    this.$root.$on('log-change', this.reloadEvents);
   },
 
   data() {
@@ -39,6 +41,10 @@ export default {
   },
 
   methods: {
+    reloadEvents() {
+      this.getAllPublicEvents();
+      this.getAllPrivateEvents();
+    }
   },
 
   components: {
