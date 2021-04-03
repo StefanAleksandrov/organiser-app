@@ -88,4 +88,6 @@ export default {
 </script>
 
 <style>
+@import './assets/css/style.css';
+@import './assets/font_awesome/all.min.css';
 </style>

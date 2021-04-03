@@ -44,7 +44,7 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  background-image: url('../../../public/images/header-img.jpg');
+  background-image: url('../../assets/images/header-img.jpg');
   background-size: cover;
 }
 
