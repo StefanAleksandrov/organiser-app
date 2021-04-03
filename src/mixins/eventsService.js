@@ -5,26 +5,21 @@ import { auth } from '../config/firebaseInit.js';
 export default {
     methods: {
         getUid() {
-            let uid = localStorage.getItem("uid");
-
-            if (uid) return uid
-            else if (this.$route.path != '/') this.$router.push('/')
-        },
-
-        isAuthenticatedUser() {
-            //If user is not logged in, cancel the operation and redirect to Login page;
-            if (!localStorage.getItem("uid")) {
-                this.$root.$emit("notify", ["No logged in user.", "error"]);
-                this.$router.go('/login');
-            }
+            return localStorage.getItem("uid");
         },
 
         createNewEvent() {
-            this.isAuthenticatedUser();
+            const uid = this.getUid();
+
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
+            }
 
             let event = {
                 createdAt: this.event.createdAt || new Date(),
-                creator: localStorage.getItem("uid"),
+                creator: uid,
                 name: this.eventName,
                 date: this.eventDate,
                 desc: this.eventDesc,
@@ -38,7 +33,6 @@ export default {
             let sendURL = URL + `events/public.json`;
 
             if (!event.isPublic) {
-                const uid = this.getUid();
                 sendURL = URL + `events/private/${uid}.json`;
             }
 
@@ -63,7 +57,13 @@ export default {
         },
 
         updateEvent(id) {
-            this.isAuthenticatedUser();
+            const uid = this.getUid();
+
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
+            }
 
             let updatedEvent = {
                 name: this.eventName,
@@ -80,7 +80,6 @@ export default {
             //the event is not switched between public / private
             if (this.event.isPublic == this.eventIsPublic) {
                 if (!updatedEvent.isPublic) {
-                    const uid = this.getUid();
                     sendURL = URL + `events/private/${uid}/${id}.json`;
                 }
 
@@ -109,16 +108,17 @@ export default {
                     })
                     .catch(err => this.$root.$emit("notify", [err.message, "error"]));
 
+            //the event is switched between public / private so we delete the old version and create the new
             } else {
                 this.deleteEvent(id, this.event.isPublic, false);
                 this.createNewEvent();
             }
         },
 
-        getEventById(id, isPublic = false) {
+        getEventById(id, isPrivate = false) {
             let getURL = URL + `events/public/${id}.json`;
 
-            if (isPublic) {
+            if (isPrivate) {
                 const uid = this.getUid();
                 getURL = URL + `events/private/${uid}/${id}.json`;
             }
@@ -128,6 +128,8 @@ export default {
         },
 
         getAllPublicEvents() {
+            this.eventsPublic = [];
+
             fetch(URL + 'events/public.json')
                 .then(resp => resp.json())
                 .then(events => {
@@ -152,7 +154,10 @@ export default {
         },
 
         getAllPrivateEvents() {
+            this.eventsPrivate = [];
             const uid = this.getUid();
+
+            if (!uid) return;
 
             fetch(URL + `events/private/${uid}.json`)
                 .then(resp => resp.json())
@@ -178,10 +183,15 @@ export default {
         },
 
         editEvent(id, isPublic = false) {
-            this.isAuthenticatedUser();
+            const uid = this.getUid();
+
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
+            }
 
             if (!isPublic) {
-                const uid = this.getUid();
                 this.$router.push(`/edit-event/${uid}/${id}`);
 
             } else {
@@ -190,12 +200,17 @@ export default {
         },
 
         deleteEvent(id, isPublic = false, redirect = true) {
-            this.isAuthenticatedUser();
+            const uid = this.getUid();
+
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
+            }
 
             let sendURL = URL + `events/public/${id}.json`;
 
             if (!isPublic) {
-                const uid = this.getUid();
                 sendURL = URL + `events/private/${uid}/${id}.json`;
             }
 
@@ -210,17 +225,13 @@ export default {
         },
 
         applyEvent() {
-            let joinURL = URL;
-            const uid = localStorage.getItem('uid');
+            const uid = this.getUid();
+            let joinURL = URL + `events/public/${this.$route.params.id}.json`;
 
-            //Guard clause to exit if there is no uid record
-            if (!uid) return this.$router.push('/login');
-
-            if (this.$route.params.uid) {
-                joinURL += `events/private/${uid}/${this.$route.params.id}.json`;
-
-            } else {
-                joinURL += `events/public/${this.$route.params.id}.json`;
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
             }
 
             fetch(joinURL)
@@ -252,11 +263,14 @@ export default {
         },
 
         leaveEvent() {
+            const uid = this.getUid();
             let leaveURL = URL;
-            const uid = localStorage.getItem('uid');
 
-            //Guard clause to exit if there is no uid record
-            if (!uid) return this.$router.push('/');
+            if (!uid) {
+                this.$root.$emit("notify", ["No logged in user.", "error"]);
+                this.$router.push('/login');
+                return;
+            }
 
             if (this.$route.params.uid) {
                 leaveURL += `events/private/${uid}/${this.$route.params.id}.json`;
